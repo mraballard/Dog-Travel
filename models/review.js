@@ -11,7 +11,7 @@ var ReviewSchema = new mongoose.Schema({
   updatedAt: Date
 });
 
-Review.Schema.pre('save', function(next){
+ReviewSchema.pre('save', function(next){
   now = new Date();
   this.updatedAt = now;
   if (!this.createdAt) {
@@ -20,4 +20,4 @@ Review.Schema.pre('save', function(next){
   next();
 });
 
-module.exports = mongoose.model('Review', UserSchema);
+module.exports = mongoose.model('Review', ReviewSchema);

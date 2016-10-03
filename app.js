@@ -9,14 +9,16 @@ var flash = require('connect-flash');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var User = require('.models/user');
-var Review = require('.models/review');
-var Location = require('.models/place');
+var Location = require('./models/location');
+var Review = require('./models/review');
+var User = require('./models/user');
+
+
 
 var usersController = require('./controllers/index.js');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhose/dog-app');
+mongoose.connect('mongodb://localhost/dog-app');
 
 app.set('view engine', 'hbs');
 

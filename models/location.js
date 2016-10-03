@@ -8,4 +8,4 @@ var LocationSchema = new mongoose.Schema({
   place: String
 });
 
-module.exports = mongoose.model('Location', UserSchema);
+module.exports = mongoose.model('Location', LocationSchema);
