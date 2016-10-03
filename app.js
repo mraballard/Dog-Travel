@@ -16,6 +16,7 @@ var User = require('./models/user');
 
 
 var usersController = require('./controllers/index.js');
+var reviewsController = require('./controllers/review.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/dog-app');
@@ -40,6 +41,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use('/', usersController);
+app.use('/home', reviewsController);
 
 app.get('/', function(req, res) {
   res.json({status: 200, message: "Server up and running"});
