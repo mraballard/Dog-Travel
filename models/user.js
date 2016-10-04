@@ -6,6 +6,8 @@ var LocationSchema = require('./location');
 var UserSchema = new mongoose.Schema({
   username: String,
   password: String,
+  firstName: String,
+  lastName: String,
   locations: [LocationSchema],
   reviews: [ReviewSchema]
 });

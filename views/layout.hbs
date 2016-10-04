@@ -14,10 +14,20 @@
 
     <header>
       <img id="logo" src="/images/paw.jpg" alt="Logo" />
-      <nav>
-        <ul>
-          <li></li>
+      <nav class="list-inline">
+        {{#if user}}
+        <div class="userName">{{user.firstName}}</div>
+        <ul class="list-inline">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/signout">Signout</a></li>
         </ul>
+        {{else}}
+        <ul class="list-inline">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/signin">Signout</a></li>        </ul>
+        {{/if}}
       </nav>
     </header>
 

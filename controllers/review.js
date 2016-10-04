@@ -6,4 +6,9 @@ var User = require('../models/user');
 var Review = require('../models/review');
 var Location = require('../models/location');
 
+router.get('/', function(req, res){
+  res.render('reviews/home');
+});
+
+
 module.exports = router;

@@ -1,11 +1,16 @@
-#logo {
-  width: 100px;
-  height: 100px;
+img {
+  display: inline;
+  background: grey;
+  width: 60px;
+  height: 60px;
   /*position: absolute;*/
   top: 10px;
   left: 10px;
   margin-right: 10px;
 }
-h1 {
-  margin: 300px auto;
+/*h1 {
+  margin-left: 200px;
+}*/
+nav {
+  margin-left: 200px;
 }
