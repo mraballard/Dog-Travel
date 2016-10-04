@@ -14,3 +14,11 @@ img {
 nav {
   margin-left: 200px;
 }
+input {
+  display: block;
+  margin: 40px;
+}
+textarea {
+  display: block;
+  margin: 40px;
+}

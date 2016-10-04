@@ -7,8 +7,12 @@ var Review = require('../models/review');
 var Location = require('../models/location');
 
 router.get('/',function(req, res){
+
   res.render('reviews/home', {user: req.user});
 });
 
+router.get('/new',function(req, res){
+  res.render('reviews/new');
+});
 
 module.exports = router;
