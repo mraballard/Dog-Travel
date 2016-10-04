@@ -2,6 +2,6 @@
 
 <ul>
   {{#each reviews}}
-  <li>{{location.city}}{{title}}</li>
+    <li><a href="/user/reviews/{{_id}}">{{location.city}}: {{title}}</a></li>
   {{/each}}
 </ul>
