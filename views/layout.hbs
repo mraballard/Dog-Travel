@@ -35,7 +35,18 @@
         {{/if}}
       </nav>
     </header>
-
+    {{#if user}}
+      <aside class="left">
+        <nav>
+          <ul>
+            <li><a href="/user/:id/profile">Profile</a></li>
+            <li><a href="/user/:id/home">Reviews</a></li>
+            <li><a href="/user/:id/new">New Post</a></li>
+            <li>{{dog.name}}</li>
+          </ul>
+        </nav>
+      </aside>
+    {{/if}}
     {{{body}}}
 
   </div>
