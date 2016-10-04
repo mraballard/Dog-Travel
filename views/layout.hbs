@@ -18,7 +18,7 @@
         {{#if user}}
         <div class="userName">Logged in as: {{user.firstName}}</div>
         <ul class="list-inline">
-          <li><a href="/index">Home</a></li>
+          <li><a href="/index">Browse Posts</a></li>
           <li><a href="/about">About</a></li>
           <li><form id="logout" action="/logout?_method=DELETE" method="POST">
             <button type="submit" name="submit">Logout</button>
@@ -26,7 +26,7 @@
         </ul>
         {{else}}
         <ul class="list-inline">
-          <li><a href="/index">Home</a></li>
+          <li><a href="/index">Browse Posts</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/login">Log In</a></li>
        </ul>
@@ -37,9 +37,9 @@
       <aside class="left">
         <nav>
           <ul>
-            <li><a href="/user/:id/profile">{{user.firstName}}'s Profile</a></li>
-            <li><a href="/user/:id/home">{{user.firstName}}'s Reviews</a></li>
-            <li><a href="/user/:id/new">New Post</a></li>
+            <li><a href="/user/{{user._id}}profile">{{user.firstName}}'s Profile</a></li>
+            <li><a href="/user/{{user._id}}">{{user.firstName}}'s Reviews</a></li>
+            <li><a href="/user/{{user._id}}/new">New Post</a></li>
             <li>{{user.dog}}</li>
           </ul>
         </nav>

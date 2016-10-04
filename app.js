@@ -43,6 +43,17 @@ passport.deserializeUser(User.deserializeUser());
 app.use('/', indexController);
 app.use('/user', usersController);
 
+//Databse Setup
+var db = mongoose.connection;
+db.on('error', function(err){ console.log(err); });
+db.once('open', function(){ console.log('Connected to Mongo database'); });
+
+// Review.remove({}) //Clears database reviews and starts from zero
+// .then(function(){
+//
+// })
+
+
 app.get('/', function(req, res) {
   res.json({status: 200, message: "Server up and running"});
 });

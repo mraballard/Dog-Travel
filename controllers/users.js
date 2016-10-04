@@ -16,15 +16,15 @@ var authenticate = function(req, res, next) {
 }
 
 router.get('/:userId', authenticate, function(req, res){
-  res.render('/home', {user: req.user});
+  res.render('reviews/home', {user: req.user});
 });
 // CREATE NEW POST
 router.get('/:userId/new', authenticate, function(req, res){
-  res.render('/new', {user: req.user});
+  res.render('reviews/new', {user: req.user});
 });
 // EDIT POST
 router.get('/:userId/:postId', authenticate, function(req, res){
-  res.render('/edit', {user: req.user});
+  res.render('reviews/edit', {user: req.user});
 });
 // PROFILE ROUTE
 router.get('/:userId/profile', authenticate, function(req, res){
