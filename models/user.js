@@ -9,7 +9,8 @@ var UserSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   locations: [LocationSchema],
-  reviews: [ReviewSchema]
+  reviews: [ReviewSchema],
+  dog: String,
 });
 
 UserSchema.plugin(passportLocalMongoose);

@@ -6,13 +6,33 @@ var User = require('../models/user');
 var Review = require('../models/review');
 var Location = require('../models/location');
 
-router.get('/',function(req, res){
+// authenticate user function
+var authenticate = function(req, res, next) {
+  if (!req.user || req.user._id != req.params.userId) {
+    res.redirect('/login');
+  } else {
+    next()
+  }
+}
 
-  res.render('reviews/home', {user: req.user});
+router.get('/:userId', authenticate, function(req, res){
+  res.render('/home', {user: req.user});
 });
-
-router.get('/new',function(req, res){
-  res.render('reviews/new');
+// CREATE NEW POST
+router.get('/:userId/new', authenticate, function(req, res){
+  res.render('/new', {user: req.user});
+});
+// EDIT POST
+router.get('/:userId/:postId', authenticate, function(req, res){
+  res.render('/edit', {user: req.user});
+});
+// PROFILE ROUTE
+router.get('/:userId/profile', authenticate, function(req, res){
+  res.render('/profile/show', {user: req.user});
+});
+// EDIT PROFILE
+router.get('/:userId/profile/edit', authenticate, function(req, res){
+  res.render('/profile/edit', {user: req.user});
 });
 
 module.exports = router;

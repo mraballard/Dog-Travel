@@ -16,10 +16,12 @@ router.get('/about', function(req, res) {
 });
 // INDEX ROUTE
 router.get('/index', function(req, res) {
+  console.log(req.user);
   Review.find({}).exec()
   .then(function(reviews){
       res.render('reviews/index',{
-        reviews: reviews
+        reviews: reviews,
+        user: req.user
       });
   });
 });
@@ -34,6 +36,7 @@ router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), fun
       res.redirect('/login');
     }
     else {
+      console.log('Logged in: ' + req.user.username);
       User.findOne({username: req.user.username}).exec()
       .then(function(user){
         res.redirect('/index');
@@ -54,6 +57,9 @@ router.post('/signup', function(req,res){
   User.register(
     new User({
       username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      dog: req.body.dogName
     }),
     req.body.password,
     function(err, user) {
