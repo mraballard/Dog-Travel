@@ -1,1 +1,7 @@
 <h1>HOME PAGE</h1>
+
+<ul class="list-unstyled">
+  {{#each review}}
+  <li>{{location}}: {{review.title}}</li>
+  {{/each}}
+</ul>

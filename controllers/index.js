@@ -22,7 +22,7 @@ router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), fun
       res.redirect('/login');
     }
     else {
-      User.findOne({username: req.user.name}).exec()
+      User.findOne({username: req.user.username}).exec()
       .then(function(user){
         res.redirect('/home');
       })
@@ -55,4 +55,13 @@ router.post('/signup', function(req,res){
     }
   );
 });
+
+// Signout USER //
+router.delete('/logout', function(req, res) {
+  req.logout();
+  req.flash('info', 'Successfully signed out!')
+  res.redirect('/');
+});
+
+
 module.exports = router;
