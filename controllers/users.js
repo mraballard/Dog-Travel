@@ -38,9 +38,11 @@ router.get('/reviews', authenticate, function(req, res){
 router.get('/reviews/:postId', authenticate, function(req, res){
   var review = findReview(req.user.reviews, req.params.postId);
   console.log(review);
+  console.log(review.title);
   var id = review._id.toString();
     res.render('reviews/show', {  //tried passing review: review but it wouldn't load. Had to define each property
       user: req.user,
+      // review: review,
       title: review.title,
       location: review.location,
       createdAt: review.createdAt,
