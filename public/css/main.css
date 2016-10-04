@@ -22,3 +22,9 @@ textarea {
   display: block;
   margin: 40px;
 }
+#newForm {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-around;
+}
