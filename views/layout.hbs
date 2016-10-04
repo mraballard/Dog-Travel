@@ -20,7 +20,7 @@
         {{#if user}}
         <div class="userName">{{user.firstName}}</div>
         <ul class="list-inline">
-          <li><a href="/home">Home</a></li>
+          <li><a href="/index">Home</a></li>
           <li><a href="/about">About</a></li>
           <li><form id="logout" action="/logout?_method=DELETE" method="POST">
             <button type="submit" name="submit">Logout</button>
@@ -28,7 +28,7 @@
         </ul>
         {{else}}
         <ul class="list-inline">
-          <li><a href="/home">Home</a></li>
+          <li><a href="/index">Home</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/login">Sign In</a></li>
        </ul>
