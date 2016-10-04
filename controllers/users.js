@@ -16,11 +16,32 @@ var authenticate = function(req, res, next) {
 }
 
 router.get('/:userId', authenticate, function(req, res){
-  res.render('reviews/home', {user: req.user});
+  res.render('reviews/home', {
+    user: req.user,
+    reviews: req.user.reviews
+  });
 });
 // CREATE NEW POST
 router.get('/:userId/new', authenticate, function(req, res){
   res.render('reviews/new', {user: req.user});
+});
+router.post('/:userId/new', function(req, res){
+  Review.create({
+    title: req.body.title,
+    location: {
+      city: req.body.city,
+      state: req.body.state,
+      country: req.body.country,
+      place: req.body.place
+    },
+    theGood: req.body.theGood,
+    theBad: req.body.theBad
+  })
+  .then(function(review){
+    req.user.reviews.push(review);
+    req.user.save();
+  });
+  res.redirect(`/user/${req.params.userId}`);
 });
 // EDIT POST
 router.get('/:userId/:postId', authenticate, function(req, res){
