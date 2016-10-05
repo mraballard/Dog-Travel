@@ -74,12 +74,10 @@ router.post('/new', function(req, res){
   });
   res.redirect(`/user/${req.params.userId}`);
 });
-// EDIT POST
+// EDIT POST GET ROUTE
 router.get('/reviews/:postId/edit', authenticate, function(req, res){
-  console.log('This is the edit post route.');
   var review = findReview(req.user.reviews, req.params.postId);
   var id = review._id.toString();
-  console.log(review);
   res.render(`reviews/edit`, {
       user: req.user,
       title: review.title,
@@ -88,6 +86,38 @@ router.get('/reviews/:postId/edit', authenticate, function(req, res){
       theBad: review.theBad,
       id: id
     });
+});
+// EDIT POST UPDATE ROUTE
+router.patch('/reviews/:postId/edit', function(req, res){
+  Review.findOne({_id: req.params.postId}).exec()
+  .then(function(review){
+    console.log('This is the review from reviews collection: '+review);
+    review.title = req.body.title;
+    review.location.city = req.body.city;
+    review.location.state = req.body.state;
+    review.location.country = req.body.country;
+    review.location.place = req.body.place;
+    review.theGood = req.body.theGood;
+    review.theBad = req.body.theBad;
+    review.save();
+  })
+  .then(function(){
+    return reviewInUserArray = findReview(req.user.reviews, req.params.postId)
+  })
+  .then(function(review){
+    console.log('This is the review from array: '+review);
+    review.title = req.body.title;
+    review.location.city = req.body.city;
+    review.location.state = req.body.state;
+    review.location.country = req.body.country;
+    review.location.place = req.body.place;
+    review.theGood = req.body.theGood;
+    review.theBad = req.body.theBad;
+    console.log('This is the updated review: '+review);
+  })
+  .then(function(){
+      res.redirect(`/reviews/${req.params.postId}`);
+  });
 });
 // PROFILE ROUTE
 router.get('/:userId/profile', authenticate, function(req, res){

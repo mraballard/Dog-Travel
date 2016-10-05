@@ -1,17 +1,17 @@
 <h3>Edit review</h3>
 <div class="container">
-<form class="form" action="/user/reviews/{{id}}/edit?_method=PATH"method="PATCH">
+<form class="form" action="/user/reviews/{{id}}/edit?_method=PATCH" method="POST">
   <div class="form-group">
     <label class="sr-only" for="title">Review Title</label>
     <input name="title" class="form-control" value="{{title}}">
+    <label class="sr-only" for="place">Name of Accomodation, if any</label>
+    <input name="place" class="form-control" value={{location.place}}>
     <label class="sr-only" for="city">City</label>
     <input name="city" class="form-control" value="{{location.city}}">
     <label class="sr-only" for="state">State</label>
     <input name="state" class="form-control" value={{location.state}}>
     <label class="sr-only" for="country">Country</label>
     <input name="country" class="form-control" value={{location.country}}>
-    <label class="sr-only" for="place">Name of Accomodation, if any</label>
-    <input name="place" class="form-control" value={{location.place}}>
     <label class="sr-only" for="theGood">The Good</label>
     <textarea name="theGood" class="form-control" name='theGood' >{{theGood}}</textarea>
     <label class="sr-only" for="theBad">The Bad</label>
@@ -19,4 +19,5 @@
   </div>
     <button type="submit" name="submit">Done</button>
 </form>
+<a href='/user/reviews/{{id}}'> < Back </a>
 </div>
