@@ -8,8 +8,7 @@ var UserSchema = new mongoose.Schema({
   password: String,
   firstName: String,
   lastName: String,
-  locations: [LocationSchema],
-  reviews: [ReviewSchema],
+  reviews: [],
   dog: String,
 });
 

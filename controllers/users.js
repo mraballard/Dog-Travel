@@ -15,49 +15,35 @@ var authenticate = function(req, res, next) {
   }
 }
 // Function to find review with given array in user's array of reviews
-var findReview = function(arr,id) {
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i]._id == id) {
-      console.log('returning.... '+arr[i]);
-      return arr[i];
-    }
-  }
-  return null;
-}
+// var findReview = function(arr,id) {
+//   for (var i = 0; i < arr.length; i++) {
+//     if (arr[i]._id == id) {
+//       console.log('returning.... '+arr[i]);
+//       return arr[i];
+//     }
+//   }
+//   return null;
+// }
 
 // Users Reviews Index Route
 router.get('/reviews', authenticate, function(req, res){
   console.log('User Home');
-  res.render('reviews/home', {
-    user: req.user,
-    reviews: req.user.reviews
-  });
-});
-
-// Users Show Review Route
-router.get('/reviews/:postId', authenticate, function(req, res){
-  var review = findReview(req.user.reviews, req.params.postId);
-  console.log(review);
-  console.log(review.title);
-  var id = review._id.toString();
-    res.render('reviews/show', {  //tried passing review: review but it wouldn't load. Had to define each property
+  Review.find({author: req.user._id})
+  .then(function(reviews){
+    res.render('reviews/home', {
       user: req.user,
-      // review: review,
-      title: review.title,
-      location: review.location,
-      createdAt: review.createdAt,
-      theGood: review.theGood,
-      theBad: review.theBad,
-      id: id
+      reviews: req.user.reviews
     });
+  });
 });
 
 // CREATE NEW POST
 router.get('/new', authenticate, function(req, res){
   res.render('reviews/new', {user: req.user});
 });
-router.post('/new', function(req, res){
+router.post('/:userId/new', function(req, res){
   Review.create({
+    author: req.user._id,
     title: req.body.title,
     location: {
       city: req.body.city,
@@ -72,51 +58,62 @@ router.post('/new', function(req, res){
     req.user.reviews.push(review);
     req.user.save();
   });
-  res.redirect(`/user/${req.params.userId}`);
+  res.redirect(`/user/reviews`);
 });
-// EDIT POST GET ROUTE
-router.get('/reviews/:postId/edit', authenticate, function(req, res){
-  var review = findReview(req.user.reviews, req.params.postId);
-  var id = review._id.toString();
-  res.render(`reviews/edit`, {
+
+// Users Show Review Route
+router.get('/reviews/:postId', authenticate, function(req, res){
+  // var review = findReview(req.user.reviews, req.params.postId);
+  Review.findOne({_id: req.params.postId})
+  .then(function(review){
+    console.log('This is the review: '+review);
+    res.render('reviews/show', {  //tried passing review: review but it wouldn't load. Had to define each property
       user: req.user,
+      // review: review,
       title: review.title,
       location: review.location,
+      createdAt: review.createdAt,
       theGood: review.theGood,
       theBad: review.theBad,
-      id: id
+      id: req.params.postId
     });
+  })
+});
+
+// EDIT POST GET ROUTE
+router.get('/reviews/:postId/edit', authenticate, function(req, res){
+  // var review = findReview(req.user.reviews, req.params.postId);
+  // var id = review._id.toString();
+  Review.findOne({_id: req.params.postId})
+  .then(function(review){
+    res.render(`reviews/edit`, {
+        user: req.user,
+        title: review.title,
+        location: review.location,
+        theGood: review.theGood,
+        theBad: review.theBad,
+        id: req.params.postId
+    });
+  })
 });
 // EDIT POST UPDATE ROUTE
 router.patch('/reviews/:postId/edit', function(req, res){
-  Review.findOne({_id: req.params.postId}).exec()
+  Review.findOne({_id: req.params.postId})
   .then(function(review){
     console.log('This is the review from reviews collection: '+review);
     review.title = req.body.title;
-    review.location.city = req.body.city;
-    review.location.state = req.body.state;
-    review.location.country = req.body.country;
-    review.location.place = req.body.place;
+    review.location = {
+      city: req.body.city,
+      state: req.body.state,
+      country: req.body.country,
+      place: req.body.place
+    };
     review.theGood = req.body.theGood;
     review.theBad = req.body.theBad;
-    review.save();
-  })
-  .then(function(){
-    return reviewInUserArray = findReview(req.user.reviews, req.params.postId)
+    return review.save();
   })
   .then(function(review){
-    console.log('This is the review from array: '+review);
-    review.title = req.body.title;
-    review.location.city = req.body.city;
-    review.location.state = req.body.state;
-    review.location.country = req.body.country;
-    review.location.place = req.body.place;
-    review.theGood = req.body.theGood;
-    review.theBad = req.body.theBad;
-    console.log('This is the updated review: '+review);
-  })
-  .then(function(){
-      res.redirect(`/reviews/${req.params.postId}`);
+      res.redirect(`/user/reviews/${review._id}`);
   });
 });
 // PROFILE ROUTE

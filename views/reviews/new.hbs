@@ -1,17 +1,17 @@
 <h3>Write your review</h3>
 <div class="container" id="newForm">
-<form class="form-inline" action="/user/{{user._id}}/new"method="post">
+<form class="form-inline" action="/user/{{user._id}}/new" method="post">
   <div class="form-group">
     <label class="sr-only" for="title">Review Title</label>
     <input name="title" class="form-control" placeholder="Title">
+    <label class="sr-only" for="place">Name of Accomodation, if any</label>
+    <input name="place" class="form-control" placeholder="Accomodation">
     <label class="sr-only" for="city">City</label>
     <input name="city" class="form-control" placeholder="City">
     <label class="sr-only" for="state">State</label>
     <input name="state" class="form-control" placeholder="State">
     <label class="sr-only" for="country">Country</label>
     <input name="country" class="form-control" placeholder="Country">
-    <label class="sr-only" for="place">Name of Accomodation, if any</label>
-    <input name="place" class="form-control" placeholder="Accomodation">
     <label class="sr-only" for="theGood">The Good</label>
     <textarea name="theGood" class="form-control" name='theGood' placeholder="The Good"></textarea>
     <label class="sr-only" for="theBad">The Bad</label>
