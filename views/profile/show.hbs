@@ -1,1 +1,25 @@
-<h1>Show Profile Page</h1>
+<h1>{{user.firstName}}'s' Profile Page</h1>
+
+<!-- <h4>First name: {{user.firstName}}</h4>
+<h4>{{user.lastName}}</h4>
+<h4>{{user.username}}</h4>
+<h4>{{user.password}}</h4>
+<h4>{{user.dog}}</h4> -->
+<h1>Edit your info</h1>
+
+<form class="" action="/user/{{user._id}}/profile?_method=PATCH" method="POST" method="POST">
+  <div class="" id="profile">
+    <label for="signup">Username</label><br>
+    <input type="text" name="username" value="{{user.username}}">
+    <label for="password">Password</label><br>
+    <input type="text" name="password" value="{{user.password}}">
+    <label for="fist-name">First name</label><br>
+    <input type="text" name="firstName" value="{{user.firstName}}">
+    <label for="last-name">Last Name</label><br>
+    <input type="text" name="lastName" value="{{user.lastName}}">
+    <label for="dog-name">Your Dog's Name</label><br>
+    <input type="text" name="dogName" value="{{user.dog}}">
+  </div>
+
+  <button type="submit" name="submit">Update!</button>
+</form>

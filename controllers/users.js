@@ -35,7 +35,6 @@ router.get('/reviews', authenticate, function(req, res){
     });
   });
 });
-
 // CREATE NEW POST
 router.get('/new', authenticate, function(req, res){
   console.log(req.user._id);
@@ -59,7 +58,6 @@ router.post('/:userId/new', function(req, res){
     res.redirect(`/user/reviews`);
   });
 });
-
 // Users Show Review Route
 router.get('/reviews/:postId', authenticate, function(req, res){
   // var review = findReview(req.user.reviews, req.params.postId);
@@ -71,7 +69,6 @@ router.get('/reviews/:postId', authenticate, function(req, res){
     });
   })
 });
-
 // EDIT POST GET ROUTE
 router.get('/reviews/:postId/edit', authenticate, function(req, res){
   // var review = findReview(req.user.reviews, req.params.postId);
@@ -117,14 +114,18 @@ router.delete('/reviews/:postId', function(req,res){
     res.redirect('/user/reviews');
   });
 });
-
-// PROFILE ROUTE
-router.get('/:userId/profile', authenticate, function(req, res){
-  res.render('/profile/show', {user: req.user});
-});
 // EDIT PROFILE
-router.get('/:userId/profile/edit', authenticate, function(req, res){
-  res.render('/profile/edit', {user: req.user});
+router.get('/:userId/profile', authenticate, function(req, res){
+  res.render('profile/show', {user: req.user});
+});
+router.patch('/:userId/profile', function(req, res) {
+    req.user.username = req.body.username;
+    req.user.password = req.body.password;
+    req.user.firstName = req.body.firstName;
+    req.user.lastName = req.body.lastName;
+    req.user.dog = req.body.dogName;
+    req.user.save();
+    res.redirect(`/user/reviews/`);
 });
 
 module.exports = router;
