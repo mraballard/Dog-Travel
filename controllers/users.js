@@ -27,18 +27,20 @@ var authenticate = function(req, res, next) {
 
 // Users Reviews Index Route
 router.get('/reviews', authenticate, function(req, res){
-  console.log('User Home');
+  console.log('User Home: '+req.user);
+
   Review.find({author: req.user._id})
   .then(function(reviews){
     res.render('reviews/home', {
       user: req.user,
-      reviews: req.user.reviews
+      reviews: reviews
     });
   });
 });
 
 // CREATE NEW POST
 router.get('/new', authenticate, function(req, res){
+  console.log(req.user._id);
   res.render('reviews/new', {user: req.user});
 });
 router.post('/:userId/new', function(req, res){
@@ -56,10 +58,8 @@ router.post('/:userId/new', function(req, res){
     theBad: req.body.theBad
   })
   .then(function(review){
-    req.user.reviews.push(review);
-    req.user.save();
+    res.redirect(`/user/reviews`);
   });
-  res.redirect(`/user/reviews`);
 });
 
 // Users Show Review Route
