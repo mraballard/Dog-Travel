@@ -8,7 +8,6 @@ var UserSchema = new mongoose.Schema({
   password: String,
   firstName: String,
   lastName: String,
-  reviews: [],
   dog: String,
 });
 

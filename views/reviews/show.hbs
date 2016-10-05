@@ -1,14 +1,14 @@
-<h1>{{title}}</h1>
-<a href="/user/reviews/{{id}}/edit"> Edit this Review</a>
+<h1>{{review.title}} by {{review.user.firstName}}</h1>
+<a href="/user/reviews/{{review._id}}/edit"> Edit this Review</a>
 <main>
-<h2>{{location.place}}</h2>
-<h3>{{location.city}}, {{location.state}}, {{location.country}}</h3>
+<h2>{{review.location.place}}</h2>
+<h3>{{review.location.city}}, {{review.location.state}}, {{review.location.country}}</h3>
 <p>
-  <span>{{createdAt}}</span>
+  <span>{{review.createdAt}}</span>
 </p>
 
 <h4>The good:</h4>
-<p>{{theGood}}</p>
+<p>{{review.theGood}}</p>
 <h4>The bad:</h4>
-<p>{{theBad}}</p>
+<p>{{review.theBad}}</p>
 </main>

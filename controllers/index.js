@@ -49,7 +49,7 @@ router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), fun
 
 // CREATE USER FROM SIGNUP //
 router.get('/signup', function(req, res){
-  res.render('signup');
+  res.render('signup', {message: req.flash('info')});
 })
 router.post('/signup', function(req,res){
   User.register(

@@ -44,6 +44,7 @@ router.get('/new', authenticate, function(req, res){
 router.post('/:userId/new', function(req, res){
   Review.create({
     author: req.user._id,
+    user: req.user._id,
     title: req.body.title,
     location: {
       city: req.body.city,
@@ -64,18 +65,10 @@ router.post('/:userId/new', function(req, res){
 // Users Show Review Route
 router.get('/reviews/:postId', authenticate, function(req, res){
   // var review = findReview(req.user.reviews, req.params.postId);
-  Review.findOne({_id: req.params.postId})
+  Review.findOne({_id: req.params.postId}).populate('user')
   .then(function(review){
-    console.log('This is the review: '+review);
-    res.render('reviews/show', {  //tried passing review: review but it wouldn't load. Had to define each property
-      user: req.user,
-      // review: review,
-      title: review.title,
-      location: review.location,
-      createdAt: review.createdAt,
-      theGood: review.theGood,
-      theBad: review.theBad,
-      id: req.params.postId
+    res.render('reviews/show', {
+      review: review
     });
   })
 });
