@@ -1,7 +1,8 @@
 <h1>INDEX PAGE</h1>
 
 <ul class="list-unstyled">
-  {{#each reviews}}
-    <li>{{location}}: {{title}}</li>
+  {{#each review}}
+  {{_id}}
+    <li><a href="/index/reviews/{{_id}}">{{title}}: {{location.city}}, {{location.state}}, {{location.country}}</a></li>
   {{/each}}
 </ul>

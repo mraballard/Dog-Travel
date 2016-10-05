@@ -18,9 +18,20 @@ router.get('/about', function(req, res) {
 router.get('/index', function(req, res) {
   Review.find({}).exec()
   .then(function(reviews){
+    console.log(reviews);
       res.render('reviews/index',{
-        reviews: reviews,
+        review: reviews,
         user: req.user
+      });
+  });
+});
+// SHOW ROUTE --  NO USER LOGGED IN
+router.get('/index/reviews/:postId', function(req, res) {
+  Review.find({_id: req.params.postId}).exec()
+  .then(function(review){
+    console.log('this is the review: ' +review);
+      res.render('reviews/show',{
+        review: review
       });
   });
 });
