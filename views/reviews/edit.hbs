@@ -1,23 +1,30 @@
+
+<a href='/user/reviews/{{review._id}}'> < Back </a>
+
 <h3>Edit review</h3>
 <div class="container">
-<form class="form" action="/user/reviews/{{id}}/edit?_method=PATCH" method="POST">
+<form class="form" action="/user/reviews/{{review.id}}/edit?_method=PATCH" method="POST">
   <div class="form-group">
     <label class="sr-only" for="title">Review Title</label>
-    <input name="title" class="form-control" value="{{title}}">
+    <input name="title" class="form-control" value="{{review.title}}">
     <label class="sr-only" for="place">Name of Accomodation, if any</label>
-    <input name="place" class="form-control" value="{{location.place}}">
+    <input name="place" class="form-control" value="{{review.location.place}}">
     <label class="sr-only" for="city">City</label>
-    <input name="city" class="form-control" value="{{location.city}}">
+    <input name="city" class="form-control" value="{{review.location.city}}">
     <label class="sr-only" for="state">State</label>
-    <input name="state" class="form-control" value="{{location.state}}">
+    <input name="state" class="form-control" value="{{review.location.state}}">
     <label class="sr-only" for="country">Country</label>
-    <input name="country" class="form-control" value="{{location.country}}">
+    <input name="country" class="form-control" value="{{review.location.country}}">
     <label class="sr-only" for="theGood">The Good</label>
-    <textarea name="theGood" class="form-control" name='theGood' >{{theGood}}</textarea>
+    <textarea name="theGood" class="form-control" name='theGood' >{{review.theGood}}</textarea>
     <label class="sr-only" for="theBad">The Bad</label>
-    <textarea name="theBad" class="form-control" name='theBad' >{{theBad}}</textarea>
+    <textarea name="theBad" class="form-control" name='theBad' >{{review.theBad}}</textarea>
   </div>
     <button type="submit" name="submit">Done</button>
 </form>
-<a href='/user/reviews/{{id}}'> < Back </a>
+
+<form class="delete-pokemon" method='POST' action='/user/reviews/{{review._id}}?_method=DELETE'>
+    <input type='submit' value='Delete Listing'/>
+  </form>
+
 </div>

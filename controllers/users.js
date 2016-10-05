@@ -27,8 +27,6 @@ var authenticate = function(req, res, next) {
 
 // Users Reviews Index Route
 router.get('/reviews', authenticate, function(req, res){
-  console.log('User Home: '+req.user);
-
   Review.find({author: req.user._id})
   .then(function(reviews){
     res.render('reviews/home', {
@@ -46,7 +44,7 @@ router.get('/new', authenticate, function(req, res){
 router.post('/:userId/new', function(req, res){
   Review.create({
     author: req.user._id,
-    user: req.user._id,
+    // user: req.user._id,
     title: req.body.title,
     location: {
       city: req.body.city,
@@ -68,6 +66,7 @@ router.get('/reviews/:postId', authenticate, function(req, res){
   Review.findOne({_id: req.params.postId}).populate('user')
   .then(function(review){
     res.render('reviews/show', {
+      user: req.user,
       review: review
     });
   })
@@ -79,15 +78,17 @@ router.get('/reviews/:postId/edit', authenticate, function(req, res){
   // var id = review._id.toString();
   Review.findOne({_id: req.params.postId})
   .then(function(review){
+    console.log('USER IS: '+ req.user);
     res.render(`reviews/edit`, {
         user: req.user,
-        title: review.title,
-        location: review.location,
-        theGood: review.theGood,
-        theBad: review.theBad,
-        id: req.params.postId
+        review: review
+        // title: review.title,
+        // location: review.location,
+        // theGood: review.theGood,
+        // theBad: review.theBad,
+        // id: req.params.postId
     });
-  })
+  });
 });
 // EDIT POST UPDATE ROUTE
 router.patch('/reviews/:postId/edit', function(req, res){
@@ -109,6 +110,14 @@ router.patch('/reviews/:postId/edit', function(req, res){
       res.redirect(`/user/reviews/${review._id}`);
   });
 });
+// DELETE POST ROUTE
+router.delete('/reviews/:postId', function(req,res){
+  Review.remove({_id: req.params.postId}).exec()
+  .then(function(){
+    res.redirect('/user/reviews');
+  });
+});
+
 // PROFILE ROUTE
 router.get('/:userId/profile', authenticate, function(req, res){
   res.render('/profile/show', {user: req.user});
