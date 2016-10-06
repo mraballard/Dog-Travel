@@ -1,16 +1,27 @@
 
-<h1>{{review.title}} : @{{review.user.username}}</h1>
+<div class="container-fluid dark">
+
+<h2>{{review.title}} {{#if user}}: @{{review.user.username}}{{/if}}</h2>
 {{#if user}}<a href="/user/reviews/{{review._id}}/edit"> Edit this Review</a>
 {{/if}}
-<main>
-<h2>{{review.location.place}}</h2>
-<h3>{{review.location.city}}, {{review.location.state}}, {{review.location.country}}</h3>
-<p>
-  <span>{{review.createdAt}}</span>
-</p>
+<div class="container darker">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>{{review.location.place}}</h3>
 
-<h4>The good:</h4>
-<p>{{review.theGood}}</p>
-<h4>The bad:</h4>
-<p>{{review.theBad}}</p>
-</main>
+      <h4>{{review.location.city}}, {{review.location.state}}, {{review.location.country}}</h4>
+
+      <p>
+        <span>{{review.createdAt}}</span>
+
+      <h5>The good:</h5>
+      <p>{{review.theGood}}</p>
+
+      <h5>The bad:</h5>
+      <p>{{review.theBad}}</p>
+    </div>
+  </div>
+</div>
+
+
+</div>

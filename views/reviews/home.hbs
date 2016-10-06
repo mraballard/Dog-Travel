@@ -1,7 +1,12 @@
-<h1>{{user.firstName}}'s HOME</h1>
+<div class="container-fluid darker">
 
-<ul>
+
+
+<h2>{{user.firstName}}'s HOME</h2>
+
+<ul class="list-group dark">
   {{#each reviews}}
-    <li><a href="/user/reviews/{{_id}}">{{location.city}}: {{title}}</a></li>
+    <li class="list-group-item dark"><a href="/user/reviews/{{_id}}">{{location.city}}: {{title}}</a></li>
   {{/each}}
 </ul>
+</div>

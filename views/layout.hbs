@@ -3,18 +3,18 @@
   <head>
     <meta charset="utf-8">
     <!-- <link href='/css/reset.css' rel='stylesheet'> -->
-    <link href='/css/main.css' rel='stylesheet'>
     <!-- Latest compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href='/css/main.css' rel='stylesheet'>
     <title>{{title}}</title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
   </head>
   <body>
     <div class="container-fluid">
 
     <header>
-      <img id="logo" src="/images/paw.jpg" alt="Logo" />
-      <nav class="list-inline">
+
+      <!-- <nav class="list-inline">
         {{#if user}}
         <div class="userName">Logged in as: {{user.firstName}}</div>
         <ul class="list-inline">
@@ -31,27 +31,79 @@
           <li><a href="/login">Log In</a></li>
        </ul>
         {{/if}}
-      </nav>
-    </header>
-    {{#if user}}
-      <aside class="left">
-        <nav>
-          <ul>
-            <li><a href="/user/{{user._id}}/profile">{{user.firstName}}'s Profile</a></li>
-            <li><a href="/user/reviews">{{user.firstName}}'s Reviews</a></li>
-            <li><a href="/user/new">New Post</a></li>
-            <li>{{user.dog}}</li>
+      </nav> -->
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img id="logo" src="/images/paw.jpg" alt="Logo" /></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/index">Browse Posts <span class="sr-only">(current)</span></a></li>
+        <li><a href="/login">Log In</a></li>
+<!-- Dropdown -->
+{{#if user}}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.firstName}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/user/{{user._id}}/profile">Profile</a></li>
+            <li><a href="/user/reviews">My Reviews</a></li>
+            <li><a href="/user/new">New Review</a></li>
+            <li role="separator" class="divider"></li>
+            <li><form id="logout" action="/logout?_method=DELETE" method="POST">
+              <button type="submit" name="submit">Logout</button>
+            </form></li>
           </ul>
-        </nav>
-      </aside>
-    {{/if}}
+        </li>
+{{/if}}
+      </ul>  <!-- End navbar list -->
+
+<!-- End Dropdown -->
+<!-- Search Bar -->
+      <!-- <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form> -->
+<!-- End Search Bar -->
+<!-- Dropdown Right -->
+      <!-- <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul> -->
+<!-- Dropdown Right -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+    </header>
 
     {{{body}}}
 
   </div>
 
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Latest compiled and minified JavaScript -->
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>
 
   <footer></footer>

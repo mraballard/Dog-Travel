@@ -1,17 +1,24 @@
 img {
-  display: inline;
-  background: grey;
-  width: 60px;
-  height: 60px;
-  /*position: absolute;*/
-  top: 10px;
-  left: 10px;
-  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  margin: -10px 0px 0px 0px;
+}
+
+.dark {
+  background: #86BF67;
+  color: #D2FFCF;
+}
+.darker {
+  background: #457F41;
+  color: #D2FFCF;
+}
+.darkest {
+  background: #2B5E2C;
 }
 /*h1 {
   margin-left: 200px;
 }*/
-nav {
+/*nav {
   margin-left: 200px;
 }
 input {
@@ -27,4 +34,4 @@ textarea {
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-around;
-}
+}*/

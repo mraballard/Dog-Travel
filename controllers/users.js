@@ -27,7 +27,7 @@ var authenticate = function(req, res, next) {
 
 // Users Reviews Index Route
 router.get('/reviews', authenticate, function(req, res){
-  Review.find({author: req.user._id})
+  Review.find({user: req.user._id})
   .then(function(reviews){
     res.render('reviews/home', {
       user: req.user,
@@ -42,8 +42,8 @@ router.get('/new', authenticate, function(req, res){
 });
 router.post('/:userId/new', function(req, res){
   Review.create({
-    author: req.user._id,
-    // user: req.user._id,
+    // author: req.user._id,
+    user: req.user,
     title: req.body.title,
     user: req.user,
     location: {
