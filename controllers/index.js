@@ -30,7 +30,8 @@ router.get('/index/reviews/:postId', function(req, res) {
   .then(function(review){
     console.log(review.user);
       res.render('reviews/show',{
-        review: review
+        review: review,
+        user: req.user
       });
   });
 });
