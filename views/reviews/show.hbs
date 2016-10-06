@@ -1,6 +1,6 @@
 
-<h1>{{review.title}}</h1>
-{{#if user}}<a href="/user/s/{{review._id}}/edit"> Edit this Review</a>
+<h1>{{review.title}} - {{review.username}}</h1>
+{{#if user}}<a href="/user/reviews/{{review._id}}/edit"> Edit this Review</a>
 {{/if}}
 <main>
 <h2>{{review.location.place}}</h2>
