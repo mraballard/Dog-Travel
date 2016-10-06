@@ -1,32 +1,49 @@
-<h3>Write your review</h3>
-<div class="container" id="newForm">
-<form class="form-inline" action="/user/{{user._id}}/new" method="post">
-  <div class="form-group">
-    <label class="sr-only" for="title">Review Title</label>
-    <input name="title" class="form-control" placeholder="Title">
-    <label class="sr-only" for="place">Name of Accomodation, if any</label>
-    <input name="place" class="form-control" placeholder="Accomodation">
-    <label class="sr-only" for="city">City</label>
-    <input name="city" class="form-control" placeholder="City">
-    <label class="sr-only" for="state">State</label>
-    <input name="state" class="form-control" placeholder="State">
-    <label class="sr-only" for="country">Country</label>
-    <input name="country" class="form-control" placeholder="Country">
-    <label class="sr-only" for="theGood">The Good</label>
-    <textarea name="theGood" class="form-control" name='theGood' placeholder="The Good"></textarea>
-    <label class="sr-only" for="theBad">The Bad</label>
-    <textarea name="theBad" class="form-control" name='theBad' placeholder="The Bad"></textarea>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8">
+      <h3>Write your review</h3>
+    </div>
   </div>
-    <button type="submit" name="submit">Create Post!</button>
-</form>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 darker">
+      <h4><a href='/user/reviews'> < Back </a></h4>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 light">
+          <form class="form" action="/user/{{user._id}}/new" method="POST">
+            <div class="form-group">
+              <label for="title">Review Title</label>
+              <input name="title" class="form-control" placeholder="Title">
+            </div>
+            <div class="form-group">
+              <label for="place">Name of Accomodation, if any</label>
+              <input name="place" class="form-control" placeholder="Name of accomodation">
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input name="city" class="form-control" placeholder="City">
+            </div>
+            <div class="form-group">
+              <label for="state">State</label>
+              <input name="state" class="form-control" placeholder="State">
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input name="country" class="form-control" placeholder="Country">
+            </div>
+            <div class="form-group">
+              <label for="theGood">The Good</label>
+              <textarea name="theGood" class="form-control" name='theGood' placeholder="The good stuff"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="theBad">The Bad</label>
+              <textarea name="theBad" class="form-control" name='theBad' placeholder="The bad stuff"></textarea>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-lg btn-primary" type='submit' value='Delete Listing'/>Done!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- <div class="container">
-  <form class="" method='POST' action='/new'>
-    <input name='city' placeholder="City">
-    <input name='state' placeholder="State / Region">
-    <input name='country' placeholder="Country">
-    <textarea name='theGood' placeholder="The Good"></textarea>
-    <textarea name='theBad' placeholder="The Bad"></textarea>
-    <input type='submit' value='Post Review'>
-  </form>
-</div> -->

@@ -1,12 +1,12 @@
-<div class="container darker col-sm-8 col-sm-offset-2">
-
-
-<h3>Recent Posts:</h3>
-
-<ul class="list-group dark">
-  {{#each review}}
-    <li class="list-group-item dark"><a href="/index/reviews/{{_id}}">{{title}}: {{location.city}}, {{location.state}}, {{location.country}}</a></li>
-  {{/each}}
-</ul>
-
+<div class="container darker">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <h3>Recent Posts:</h3>
+          <ul class="list-group">
+            {{#each review}}
+                <li class="list-group-item dark"><a href="/index/reviews/{{_id}}">{{title}}: {{location.city}}, {{location.state}}, {{location.country}}</a></li>
+            {{/each}}
+          </ul>
+    </div>
+  </div>
 </div>

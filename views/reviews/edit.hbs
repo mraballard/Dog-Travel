@@ -1,30 +1,54 @@
-
-<a href='/user/reviews/{{review._id}}'> < Back </a>
-
-<h3>Edit review</h3>
 <div class="container">
-<form class="form" action="/user/reviews/{{review.id}}/edit?_method=PATCH" method="POST">
-  <div class="form-group">
-    <label class="sr-only" for="title">Review Title</label>
-    <input name="title" class="form-control" value="{{review.title}}">
-    <label class="sr-only" for="place">Name of Accomodation, if any</label>
-    <input name="place" class="form-control" value="{{review.location.place}}">
-    <label class="sr-only" for="city">City</label>
-    <input name="city" class="form-control" value="{{review.location.city}}">
-    <label class="sr-only" for="state">State</label>
-    <input name="state" class="form-control" value="{{review.location.state}}">
-    <label class="sr-only" for="country">Country</label>
-    <input name="country" class="form-control" value="{{review.location.country}}">
-    <label class="sr-only" for="theGood">The Good</label>
-    <textarea name="theGood" class="form-control" name='theGood' >{{review.theGood}}</textarea>
-    <label class="sr-only" for="theBad">The Bad</label>
-    <textarea name="theBad" class="form-control" name='theBad' >{{review.theBad}}</textarea>
+  <div class="row">
+    <div class="col-xs-8">
+      <h3>Edit review</h3>
+    </div>
+    <div class="col-xs-2">
+      <form method='POST' action='/user/reviews/{{review._id}}?_method=DELETE'>
+          <button class="btn btn-sm btn-danger" type='submit' value='Delete Listing'/>Delete</button>
+      </form>
+    </div>
   </div>
-    <button type="submit" name="submit">Done</button>
-</form>
-
-<form class="delete-pokemon" method='POST' action='/user/reviews/{{review._id}}?_method=DELETE'>
-    <input type='submit' value='Delete Listing'/>
-  </form>
-
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 darker">
+      <h4><a href='/user/reviews/{{review._id}}'> < Back </a></h4>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 light">
+          <form class="form" action="/user/reviews/{{review.id}}/edit?_method=PATCH" method="POST">
+            <div class="form-group">
+              <label for="title">Review Title</label>
+              <input name="title" class="form-control" value="{{review.title}}">
+            </div>
+            <div class="form-group">
+              <label for="place">Name of Accomodation, if any</label>
+              <input name="place" class="form-control" value="{{review.location.place}}">
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input name="city" class="form-control" value="{{review.location.city}}">
+            </div>
+            <div class="form-group">
+              <label for="state">State</label>
+              <input name="state" class="form-control" value="{{review.location.state}}">
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input name="country" class="form-control" value="{{review.location.country}}">
+            </div>
+            <div class="form-group">
+              <label for="theGood">The Good</label>
+              <textarea name="theGood" class="form-control" name='theGood' >{{review.theGood}}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="theBad">The Bad</label>
+              <textarea name="theBad" class="form-control" name='theBad' >{{review.theBad}}</textarea>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-lg btn-primary" type='submit' value='Delete Listing'/>Done!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

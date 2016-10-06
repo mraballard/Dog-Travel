@@ -66,7 +66,7 @@ router.get('/reviews/:postId', authenticate, function(req, res){
   .then(function(review){
     res.render('reviews/show', {
       user: req.user,
-      review: review
+      review: review,
     });
   })
 });

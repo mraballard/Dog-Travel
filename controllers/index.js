@@ -37,7 +37,7 @@ router.get('/index/reviews/:postId', function(req, res) {
 });
 // POST LOGIN ROUTE USING PROMISES //
 router.get('/login', function(req,res){
-  res.render('login', {message: req.flash('info'), title: 'The Dog Travel App'});
+  res.render('login', {message: req.flash('info'), title: "Travel with man's best friend"});
 });
 router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), function(req, res){
   req.session.save(function(err) {
@@ -90,6 +90,5 @@ router.delete('/logout', function(req, res) {
   req.flash('info', 'Successfully signed out!')
   res.redirect('/');
 });
-
 
 module.exports = router;
