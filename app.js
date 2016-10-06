@@ -19,7 +19,8 @@ var indexController = require('./controllers/index.js');
 var usersController = require('./controllers/users.js');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/dog-app');
+var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/dog-app';
+mongoose.connect(mongoURI);
 
 app.set('view engine', 'hbs');
 
@@ -58,4 +59,4 @@ app.get('/', function(req, res) {
   res.json({status: 200, message: "Server up and running"});
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);

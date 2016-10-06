@@ -4,6 +4,7 @@ var ReviewSchema = require('./review');
 var LocationSchema = require('./location');
 
 var UserSchema = new mongoose.Schema({
+  _id: Number,
   username: String,
   password: String,
   firstName: String,

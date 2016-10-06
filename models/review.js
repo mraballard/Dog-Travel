@@ -4,10 +4,10 @@ var LocationSchema = require('./location');
 
 var ReviewSchema = new mongoose.Schema({
   author: String,  // This will be user ID who writes post
-  // user: {
-  //   type: Number,
-  //   ref: 'User'
-  // },
+  user: {
+    type: Number,
+    ref: 'User'
+  },
   title: String,
   location: LocationSchema,
   theGood: String,
