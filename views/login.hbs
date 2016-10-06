@@ -1,10 +1,24 @@
-<h1>Welcome to {{title}}</h1>
-
-<h3>Sign in, <a href="/signup">Sign up</a>, or <a href="/index">continue</a> as guest</h3>
-
-<form class="" action="/login" method="post">
-  <input type="text" name="username" placeholder="username">
-  <input type="password" name="password" placeholder="password">
-
-  <button type="submit" name="submit">Log In</button>
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 darker text-center">
+      <h2>Travel with man's best friend</h2>
+      <hr>
+      <h4>Sign in, <a href="/signup">Sign up</a>, or <a href="/index">continue</a> as guest</h4>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-left">
+          <form class="" action="/login" method="post">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input class="form-control" type="text" name="username" placeholder="username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input class="form-control" type="password" name="password" placeholder="password">
+            </div>
+          </form>
+        </div>
+      </div>
+      <button class="btn btn-success" type="submit" name="submit">Log In</button>
+    </div>
+  </div>
+</div>
