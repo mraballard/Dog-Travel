@@ -26,8 +26,9 @@ router.get('/index', function(req, res) {
 });
 // SHOW ROUTE --  NO USER LOGGED IN
 router.get('/index/reviews/:postId', function(req, res) {
-  Review.findOne({_id: req.params.postId})
+  Review.findOne({_id: req.params.postId}).populate('user')
   .then(function(review){
+    console.log(review.user);
       res.render('reviews/show',{
         review: review
       });

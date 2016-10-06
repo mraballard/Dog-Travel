@@ -1,5 +1,5 @@
 
-<h1>{{review.title}} - {{review.username}}</h1>
+<h1>{{review.title}} : @{{review.user.username}}</h1>
 {{#if user}}<a href="/user/reviews/{{review._id}}/edit"> Edit this Review</a>
 {{/if}}
 <main>

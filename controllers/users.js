@@ -45,6 +45,7 @@ router.post('/:userId/new', function(req, res){
     author: req.user._id,
     // user: req.user._id,
     title: req.body.title,
+    user: req.user,
     location: {
       city: req.body.city,
       state: req.body.state,

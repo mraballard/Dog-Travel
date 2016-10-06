@@ -1,13 +1,14 @@
 var mongoose = require('mongoose');
 var UserSchema = require('./user');
 var LocationSchema = require('./location');
+var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var ReviewSchema = new mongoose.Schema({
   author: String,  // This will be user ID who writes post
-  // user: {
-  //   type: ObjectId,
-  //   ref: 'User'
-  // },
+  user: {
+    type: ObjectId,
+    ref: 'User'
+  },
   title: String,
   location: LocationSchema,
   theGood: String,
