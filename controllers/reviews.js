@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var Location = require('../models/location');
-var User = require('../models/user');
 var Comment = require('../models/comments');
 var Review = require('../models/review');
 
@@ -24,7 +22,10 @@ router.get('/', function(req, res) {
 // SHOW ROUTE --  NO USER LOGGED IN
 router.get('/:postId', function(req, res) {
   console.log('Revews route!!');
-  Review.findOne({_id: req.params.postId}).populate('user')
+  Review.findOne({_id: req.params.postId}).populate('user').populate('comments.user').exec()
+  .catch(function(error){
+    console.log(error);
+  })
   .then(function(review){
     if (!req.user) {
       var sameUser = false;
@@ -47,24 +48,26 @@ router.get('/:postId', function(req, res) {
     });
   });
 });
-// EDIT POST UPDATE ROUTE
-router.patch('/:postId/edit', function(req, res){
-  Review.findOne({_id: req.params.postId})
+// COMMENT POST UPDATE ROUTE
+router.patch('/:postId/', function(req, res){
+  var newComment = new Comment({
+    user: req.user,
+    body: req.body.comment
+  });
+  console.log('comment created');
+  Review.findOne({_id: req.params.postId}).exec()
+  .catch(function(error){
+    console.log(error);
+  })
   .then(function(review){
-    console.log('This is the review from reviews collection: '+review);
-    review.title = req.body.title;
-    review.location = {
-      city: req.body.city,
-      state: req.body.state,
-      country: req.body.country,
-      place: req.body.place
-    };
-    review.theGood = req.body.theGood;
-    review.theBad = req.body.theBad;
+    console.log('review found '+review);
+    console.log('This is the comment '+newComment);
+    review.comments.push(newComment);
+    console.log('comment added '+review.comments);
     return review.save();
   })
   .then(function(review){
-      res.redirect(`/user/reviews/${review._id}`);
+      res.redirect(`/reviews/${review._id}`);
   });
 });
 module.exports = router;
