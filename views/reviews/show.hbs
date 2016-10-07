@@ -22,7 +22,7 @@
         <div class="col-sm-8 col-sm-offset-2 darker">
           <ul class="list-group">
             {{#each review.comments}}
-              <li class="list-group-item dark">{{body}}   <a href="/user/{{user._id}}">@{{user.username}}</a></li>
+              <li class="list-group-item dark"><span>{{updatedAt}}</span><br>{{body}}   <a href="/user/{{user._id}}">@{{user.username}}</a></li>
             {{/ each}}
           </ul>
         </div>
