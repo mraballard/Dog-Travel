@@ -116,7 +116,7 @@ router.patch('/reviews/:postId/edit', function(req, res){
 router.delete('/reviews/:postId', function(req,res){
   Review.remove({_id: req.params.postId}).exec()
   .then(function(){
-    res.redirect('/user/reviews');
+    res.redirect(`/user/${req.user._id}`);
   });
 });
 // EDIT PROFILE
@@ -130,7 +130,7 @@ router.patch('/:userId/profile', function(req, res) {
     req.user.lastName = req.body.lastName;
     req.user.dog = req.body.dogName;
     req.user.save();
-    res.redirect(`/user/reviews/`);
+    res.redirect(`/user/${req.user._id}`);
 });
 
 module.exports = router;
