@@ -15,13 +15,26 @@ var authenticate = function(req, res, next) {
   }
 }
 // Users Reviews Index Route
-router.get('/reviews', authenticate, function(req, res){
-  Review.find({user: req.user._id})
+router.get('/:userId', function(req, res){
+  console.log('User posts!!!');
+  Review.find({user: req.params.userId}).populate('user').exec()
+  .catch(function(error){
+    console.log(error);
+  })
   .then(function(reviews){
-    res.render('reviews/home', {
+    console.log(reviews);
+    var viewData = {
+      reviews: reviews,
       user: req.user,
-      reviews: reviews
-    });
+      owner: reviews[0].user
+    };
+    var searchString = req.query.search;
+    if (searchString) {
+      viewData.reviews = reviews.filter(function(review){
+        return review.location.city.toLowerCase().includes(searchString.toLowerCase());
+      });
+    }
+    res.render('reviews/index', viewData);
   });
 });
 // CREATE NEW POST
