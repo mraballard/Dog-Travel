@@ -64,11 +64,24 @@ router.get('/reviews/:postId', authenticate, function(req, res){
   // var review = findReview(req.user.reviews, req.params.postId);
   Review.findOne({_id: req.params.postId}).populate('user')
   .then(function(review){
+    // console.log('posts author: '+review.user._id);
+    // console.log('user logged in' + req.user._id);
+    var postId = review.user._id.toString();
+    var userId = req.user._id.toString();
+    if (postId === userId) {
+      console.log(postId, userId);
+      var sameUser = true;
+    }
+    else {
+      var sameUser = false;
+      console.log(postId, userId);
+    }
     res.render('reviews/show', {
       user: req.user,
       review: review,
+      isUser: sameUser
     });
-  })
+  });
 });
 // EDIT POST GET ROUTE
 router.get('/reviews/:postId/edit', authenticate, function(req, res){

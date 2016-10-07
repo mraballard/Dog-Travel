@@ -28,10 +28,20 @@ router.get('/index', function(req, res) {
 router.get('/index/reviews/:postId', function(req, res) {
   Review.findOne({_id: req.params.postId}).populate('user')
   .then(function(review){
-    console.log(review.user);
+    var postId = review.user._id.toString();
+    var userId = req.user._id.toString();
+    if (postId === userId) {
+      console.log(postId, userId);
+      var sameUser = true;
+    }
+    else {
+      var sameUser = false;
+      console.log(postId, userId);
+    }
       res.render('reviews/show',{
         review: review,
-        user: req.user
+        user: req.user,
+        isUser: sameUser
       });
   });
 });
