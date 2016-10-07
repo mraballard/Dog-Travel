@@ -47,5 +47,24 @@ router.get('/:postId', function(req, res) {
     });
   });
 });
-
+// EDIT POST UPDATE ROUTE
+router.patch('/:postId/edit', function(req, res){
+  Review.findOne({_id: req.params.postId})
+  .then(function(review){
+    console.log('This is the review from reviews collection: '+review);
+    review.title = req.body.title;
+    review.location = {
+      city: req.body.city,
+      state: req.body.state,
+      country: req.body.country,
+      place: req.body.place
+    };
+    review.theGood = req.body.theGood;
+    review.theBad = req.body.theBad;
+    return review.save();
+  })
+  .then(function(review){
+      res.redirect(`/user/reviews/${review._id}`);
+  });
+});
 module.exports = router;
