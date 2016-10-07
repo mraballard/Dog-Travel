@@ -14,17 +14,6 @@ var authenticate = function(req, res, next) {
     next()
   }
 }
-// Function to find review with given array in user's array of reviews
-// var findReview = function(arr,id) {
-//   for (var i = 0; i < arr.length; i++) {
-//     if (arr[i]._id == id) {
-//       console.log('returning.... '+arr[i]);
-//       return arr[i];
-//     }
-//   }
-//   return null;
-// }
-
 // Users Reviews Index Route
 router.get('/reviews', authenticate, function(req, res){
   Review.find({user: req.user._id})
@@ -85,19 +74,11 @@ router.get('/reviews/:postId', authenticate, function(req, res){
 });
 // EDIT POST GET ROUTE
 router.get('/reviews/:postId/edit', authenticate, function(req, res){
-  // var review = findReview(req.user.reviews, req.params.postId);
-  // var id = review._id.toString();
   Review.findOne({_id: req.params.postId})
   .then(function(review){
-    console.log('USER IS: '+ req.user);
     res.render(`reviews/edit`, {
         user: req.user,
         review: review
-        // title: review.title,
-        // location: review.location,
-        // theGood: review.theGood,
-        // theBad: review.theBad,
-        // id: req.params.postId
     });
   });
 });

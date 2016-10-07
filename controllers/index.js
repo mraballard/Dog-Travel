@@ -14,41 +14,7 @@ router.get('/', function(req, res) {
 router.get('/about', function(req, res) {
   res.redirect('/login');
 });
-// INDEX ROUTE
-router.get('/index', function(req, res) {
-  Review.find({}).exec()
-  .then(function(reviews){
-    var viewData = {reviews: reviews, user: req.user};
-    var searchString = req.query.search;
-    if (searchString) {
-      viewData.reviews = reviews.filter(function(review){
-        return review.location.city.toLowerCase().includes(searchString.toLowerCase());
-      });
-    }
-    res.render('reviews/index',viewData);
-  });
-});
-// SHOW ROUTE --  NO USER LOGGED IN
-router.get('/index/reviews/:postId', function(req, res) {
-  Review.findOne({_id: req.params.postId}).populate('user')
-  .then(function(review){
-    var postId = review.user._id.toString();
-    var userId = req.user._id.toString();
-    if (postId === userId) {
-      console.log(postId, userId);
-      var sameUser = true;
-    }
-    else {
-      var sameUser = false;
-      console.log(postId, userId);
-    }
-      res.render('reviews/show',{
-        review: review,
-        user: req.user,
-        isUser: sameUser
-      });
-  });
-});
+
 // POST LOGIN ROUTE USING PROMISES //
 router.get('/login', function(req,res){
   res.render('login', {message: req.flash('info'), title: "Travel with man's best friend"});
@@ -62,7 +28,7 @@ router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), fun
     else {
       User.findOne({username: req.user.username}).exec()
       .then(function(user){
-        res.redirect('/index');
+        res.redirect('/reviews');
       })
       .catch(function(err){
         req.flash('info', err.message);

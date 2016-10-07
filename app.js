@@ -10,13 +10,14 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var Location = require('./models/location');
-var Review = require('./models/review');
 var User = require('./models/user');
-
-
+var Comment = require('./models/comments');
+var Review = require('./models/review');
 
 var indexController = require('./controllers/index.js');
 var usersController = require('./controllers/users.js');
+var reviewsController = require('./controllers/reviews.js');
+
 
 mongoose.Promise = global.Promise;
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/dog-app';
@@ -43,6 +44,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use('/', indexController);
 app.use('/user', usersController);
+app.use('/reviews', reviewsController);
 
 //Databse Setup
 var db = mongoose.connection;
