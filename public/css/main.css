@@ -20,6 +20,9 @@ a:hover {
 .top-buffer {
   margin-top:10px;
 }
+.bottom-buffer {
+  margin-bottom:30px;
+}
 img {
   width: 40px;
   height: 40px;
