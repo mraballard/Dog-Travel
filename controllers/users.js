@@ -9,20 +9,19 @@ var Location = require('../models/location');
 // authenticate user function
 var authenticate = function(req, res, next) {
   if (!req.user || req.user._id.toString() !== req.params.userId.toString()) {
-    // req.fash('info', "Unable to verify user.");
+    req.fash('info', "Unable to verify user.");
     res.redirect('/login');
   } else {
-    next()
+    next();
   }
 }
 // Users Reviews Index Route
 router.get('/:userId', function(req, res){
   Review.find({user: req.params.userId}).populate('user').exec()
   .catch(function(error){
-    console.log(error);
+    req.flash('info', error);
   })
   .then(function(reviews){
-    console.log(reviews);
     var viewData = {
       reviews: reviews,
       user: req.user,
@@ -54,6 +53,9 @@ router.post('/:userId/new', function(req, res){
     theGood: req.body.theGood,
     theBad: req.body.theBad
   })
+  .catch(function(error){
+    req.flash('info', error);
+  })
   .then(function(review){
     res.redirect(`/user/${req.user._id}`);
   });
@@ -84,7 +86,10 @@ router.post('/:userId/new', function(req, res){
 // });
 // EDIT POST GET ROUTE
 router.get('/:userId/:postId/edit', authenticate, function(req, res){
-  Review.findOne({_id: req.params.postId})
+  Review.findOne({_id: req.params.postId}).exec()
+  .catch(function(error){
+    req.flash('info', error);
+  })
   .then(function(review){
     res.render(`reviews/edit`, {
         user: req.user,

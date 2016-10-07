@@ -14,10 +14,17 @@ router.get('/', function(req, res) {
 router.get('/about', function(req, res) {
   res.redirect('/login');
 });
-
 // POST LOGIN ROUTE USING PROMISES //
 router.get('/login', function(req,res){
-  res.render('login', {message: req.flash('info'), title: "Travel with man's best friend"});
+  if (req.user) {
+    req.flash('info', 'You are already signed in, '+req.user.firstName+'!');
+    res.redirect('/reviews');
+  }
+  else {
+    res.render('login', {
+      message: req.flash('info'),
+      title: "Travel with man's best friend"});
+  }
 });
 router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), function(req, res){
   req.session.save(function(err) {
@@ -28,6 +35,7 @@ router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), fun
     else {
       User.findOne({username: req.user.username}).exec()
       .then(function(user){
+        req.flash('info', 'Welcome!')
         res.redirect('/reviews');
       })
       .catch(function(err){
@@ -40,7 +48,7 @@ router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), fun
 
 // CREATE USER FROM SIGNUP //
 router.get('/signup', function(req, res){
-  res.render('signup', {message: req.flash('info')});
+  res.render('signup');
 })
 router.post('/signup', function(req,res){
   User.register(
@@ -58,6 +66,7 @@ router.post('/signup', function(req,res){
         res.redirect('/signup');
       }
       else {
+        req.flash('info', 'Welcome! Please login!');
         res.redirect('/login');
       }
     }

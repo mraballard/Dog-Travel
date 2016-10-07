@@ -9,7 +9,7 @@ var Review = require('../models/review');
 router.get('/', function(req, res) {
   Review.find({}).exec()
   .then(function(reviews){
-    var viewData = {reviews: reviews, user: req.user};
+    var viewData = {reviews: reviews, user: req.user, message: req.flash('info')};
     var searchString = req.query.search;
     if (searchString) {
       viewData.reviews = reviews.filter(function(review){
@@ -25,6 +25,7 @@ router.get('/:postId', function(req, res) {
   Review.findOne({_id: req.params.postId}).populate('user').populate('comments.user').exec()
   .catch(function(error){
     console.log(error);
+    req.flash('info', error);
   })
   .then(function(review){
     if (!req.user) {
@@ -54,16 +55,12 @@ router.patch('/:postId/', function(req, res){
     user: req.user,
     body: req.body.comment
   });
-  console.log('comment created');
   Review.findOne({_id: req.params.postId}).exec()
   .catch(function(error){
     console.log(error);
   })
   .then(function(review){
-    console.log('review found '+review);
-    console.log('This is the comment '+newComment);
     review.comments.push(newComment);
-    console.log('comment added '+review.comments);
     return review.save();
   })
   .then(function(review){
