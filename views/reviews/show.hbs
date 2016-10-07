@@ -19,9 +19,29 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 darker">
+          <ul class="list-group">
+            {{#each review.comments}}
+              <li class="list-group-item dark">{{comment}}   <a href="/user/reviews/{{user._id}}">@{{user.username}}</a></li>
+            {{/ each}}
+          </ul>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-xs-6">
           {{#if isUser}}
             <h4><a href="/user/reviews/{{review._id}}/edit"> Edit this Review</a></h4>
+          {{/if}}
+          {{#if user}}
+            <form class="form" action="/user/reviews/{{review.id}}?_method=PATCH" method="POST">
+              <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea name="comment" class="form-control" name='comment' placeholder="Add comment"></textarea>
+              </div>
+              <div class="btn-group">
+                <button class="btn btn-md btn-default" type='submit' value='submit'/>Add comment</button>
+              </div>
+            </form>
           {{/if}}
         </div>
       </div>

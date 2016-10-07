@@ -23,11 +23,11 @@
     </div>
   </div>
   <div class="row top-buffer bottom-buffer">
-    <div class="col-md-8 col-sm-offset-2 darker">
+    <div class="col-md-8 col-md-offset-2 darker">
       <h3>Recent Posts:</h3>
         <ul class="list-group">
           {{#each reviews}}
-              <li class="list-group-item dark"><a href="/index/reviews/{{_id}}">{{title}}:</a> {{location.city}}, {{location.state}}, {{location.country}}</li>
+              <li class="list-group-item dark"><a href="/user/reviews/{{reviews.user._id}}/{{_id}}">{{title}}:</a> {{location.city}}, {{location.state}}, {{location.country}}<span id="likes">{{likes}}</span></li>
           {{/each}}
         </ul>
     </div>

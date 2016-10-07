@@ -10,10 +10,9 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var Location = require('./models/location');
-var Review = require('./models/review');
 var User = require('./models/user');
-
-
+var Comment = require('./models/comments');
+var Review = require('./models/review');
 
 var indexController = require('./controllers/index.js');
 var usersController = require('./controllers/users.js');

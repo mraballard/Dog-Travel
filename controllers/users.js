@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
+var Comment = require('../models/comments');
 var Review = require('../models/review');
 var Location = require('../models/location');
 
@@ -26,12 +27,17 @@ var authenticate = function(req, res, next) {
 // }
 
 // Users Reviews Index Route
-router.get('/reviews', authenticate, function(req, res){
-  Review.find({user: req.user._id})
+router.get('/reviews/:userId', authenticate, function(req, res){
+  Review.find({user: req.params.userId}).populate('user').populate('comments.user').exec()
+  .catch(function(error){
+    console.log(error);
+  })
   .then(function(reviews){
+    console.log(reviews);
     res.render('reviews/home', {
-      user: req.user,
-      reviews: reviews
+      user: req.user,  //current user who is logged in
+      reviews: reviews,
+      owner: reviews[0].user.firstName
     });
   });
 });
@@ -60,11 +66,14 @@ router.post('/:userId/new', function(req, res){
   });
 });
 // Users Show Review Route
-router.get('/reviews/:postId', authenticate, function(req, res){
-  // var review = findReview(req.user.reviews, req.params.postId);
-  Review.findOne({_id: req.params.postId}).populate('user')
+router.get('/reviews/:userId/:postId', authenticate, function(req, res){
+  console.log('Helloo');
+  Review.findOne({_id: req.params.postId}).populate('user').populate('comments.user').exec()
+  .catch(function(error){
+    console.log(error);
+  })
   .then(function(review){
-    // console.log('posts author: '+review.user._id);
+    console.log('HELO');
     // console.log('user logged in' + req.user._id);
     var postId = review.user._id.toString();
     var userId = req.user._id.toString();
@@ -76,11 +85,32 @@ router.get('/reviews/:postId', authenticate, function(req, res){
       var sameUser = false;
       console.log(postId, userId);
     }
+
     res.render('reviews/show', {
       user: req.user,
+      owner: review.user,
       review: review,
       isUser: sameUser
     });
+  });
+});
+// COMMENT POST UPDATE ROUTE
+router.patch('/reviews/:postId/', function(req, res){
+  var newComment = new Comment({
+    user: req.user,
+    comment: req.body.comment
+  });
+  console.log('comment created');
+  Review.findOne({_id: req.params.postId})
+  .then(function(review){
+    console.log('review found '+review);
+    console.log('This is the comment '+newComment);
+    review.comments.push(newComment);
+    console.log('comment added '+review.comments);
+    return review.save();
+  })
+  .then(function(review){
+      res.redirect(`/user/reviews/${review._id}`);
   });
 });
 // EDIT POST GET ROUTE

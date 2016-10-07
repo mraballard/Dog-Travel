@@ -4,9 +4,11 @@ body {
   text-transform: lowercase;
   letter-spacing: 1px;
 }
+#likes {
+  float: right;
+}
 li {
   margin-top: 5px;
-  font-size: 1.5em;
   letter-spacing: 1px;
 }
 a {

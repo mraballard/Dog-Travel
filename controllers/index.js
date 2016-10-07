@@ -30,17 +30,24 @@ router.get('/index', function(req, res) {
 });
 // SHOW ROUTE --  NO USER LOGGED IN
 router.get('/index/reviews/:postId', function(req, res) {
-  Review.findOne({_id: req.params.postId}).populate('user')
+  Review.findOne({_id: req.params.postId}).populate('user').populate('comments.user').exec()
+  .catch(function(error){
+    console.log(error);
+  })
   .then(function(review){
-    var postId = review.user._id.toString();
-    var userId = req.user._id.toString();
-    if (postId === userId) {
-      console.log(postId, userId);
-      var sameUser = true;
+    console.log(review.comments);
+    if (req.user) {
+      var postId = review.user._id.toString();
+      var userId = req.user._id.toString();
+      if (postId === userId) {
+        var sameUser = true;
+      }
+      else {
+        var sameUser = false;
+      }
     }
     else {
-      var sameUser = false;
-      console.log(postId, userId);
+      sameUser = false;
     }
       res.render('reviews/show',{
         review: review,
