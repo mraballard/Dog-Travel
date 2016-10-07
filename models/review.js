@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 var UserSchema = require('./user');
 var LocationSchema = require('./location');
+var CommentSchema = require('./comments').schema;
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var ReviewSchema = new mongoose.Schema({
-  // author: String,  // This will be user ID who writes post
   user: {
     type: ObjectId,
     ref: 'User'
@@ -14,7 +14,9 @@ var ReviewSchema = new mongoose.Schema({
   theGood: String,
   theBad: String,
   createdAt: Date,
-  updatedAt: Date
+  updatedAt: Date,
+  likes: Number,
+  comments: [CommentSchema]
 });
 
 ReviewSchema.pre('save', function(next){

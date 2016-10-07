@@ -9,7 +9,7 @@ var CommentSchema = new mongoose.Schema({
   },
   createdAt: Date,
   updatedAt: Date,
-  comment: String
+  body: String
 });
 
 CommentSchema.pre('save', function(next){
