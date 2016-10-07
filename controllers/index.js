@@ -18,10 +18,14 @@ router.get('/about', function(req, res) {
 router.get('/index', function(req, res) {
   Review.find({}).exec()
   .then(function(reviews){
-      res.render('reviews/index',{
-        review: reviews,
-        user: req.user
+    var viewData = {reviews: reviews, user: req.user};
+    var searchString = req.query.search;
+    if (searchString) {
+      viewData.reviews = reviews.filter(function(review){
+        return review.location.city.toLowerCase().includes(searchString.toLowerCase());
       });
+    }
+    res.render('reviews/index',viewData);
   });
 });
 // SHOW ROUTE --  NO USER LOGGED IN

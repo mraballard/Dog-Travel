@@ -4,13 +4,18 @@ body {
 }
 li {
   margin-top: 5px;
+  font-size: 1.5em;
+  letter-spacing: 1px;
 }
 a {
-  color: black;
+  color: #F4FF36;
 }
 a:hover {
   color: #D2FFCF;
   text-decoration: none;
+}
+.top-buffer {
+  margin-top:10px;
 }
 img {
   width: 40px;

@@ -1,12 +1,35 @@
-<div class="container darker">
+<div class="container light">
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-md-3 col-md-offset-2">
+      <h3>Search Posts:</h3>
+      <div class="form-group">
+        <form class="form-inline">
+          <div class="form-group">
+            <label class="sr-only" for='searchString'> Search List: </label>
+            <input class="form-control" name='search' placeholder="Search for City">
+            <button class="btn btn-md btn-default" type='submit' value='search'>Search</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-md-offset-2">
+      <form class="form-inline">
+        <div class="form-group">
+          <button class="btn btn-md btn-default" type='submit' value='Clear Filter'>Clear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row top-buffer">
+    <div class="col-md-8 col-sm-offset-2 darker">
       <h3>Recent Posts:</h3>
-          <ul class="list-group">
-            {{#each review}}
-                <li class="list-group-item dark"><a href="/index/reviews/{{_id}}">{{title}}: {{location.city}}, {{location.state}}, {{location.country}}</a></li>
-            {{/each}}
-          </ul>
+        <ul class="list-group">
+          {{#each reviews}}
+              <li class="list-group-item dark"><a href="/index/reviews/{{_id}}">{{title}}: {{location.city}}, {{location.state}}, {{location.country}}</a></li>
+          {{/each}}
+        </ul>
     </div>
   </div>
 </div>
