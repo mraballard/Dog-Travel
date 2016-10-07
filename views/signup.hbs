@@ -1,18 +1,46 @@
-<h1>Please fill out your info</h1>
-<h2>{{message}}</h2>
-<form class="" action="/signup" method="post">
-  <div class="" id="signup">
-    <label for="signup">Username</label><br>
-    <input type="text" name="username" placeholder="username">
-    <label for="password">Password</label><br>
-    <input type="password" name="password" placeholder="password">
-    <label for="fist-name">First name</label><br>
-    <input type="text" name="firstName" placeholder="First name">
-    <label for="last-name">Last Name</label><br>
-    <input type="text" name="lastName" placeholder="Last name">
-    <label for="dog-name">Your Dog's Name</label><br>
-    <input type="text" name="dogName" placeholder="Dog's name">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8">
+      <h3>Please fill out your info</h3>
+      <h4>{{message}}</h4>
+    </div>
   </div>
-
-  <button type="submit" name="submit">Signup!</button>
-</form>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 darker">
+      <h4><a href='/user/reviews'> < Back </a></h4>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 light">
+          <form class="form" action="/signup" method="POST">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input name="username" class="form-control" placeholder="username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input name="password" class="form-control" placeholder="password">
+            </div>
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input name="firstName" class="form-control" placeholder="First Name">
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input name="lastName" class="form-control" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input name="country" class="form-control" placeholder="Country">
+            </div>
+            <div class="form-group">
+              <label for="dogName">Your Dog's name</label>
+              <textarea name="dogName" class="form-control" name='dogName' placeholder="Dog's name"></textarea>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-lg btn-primary" type='submit' value='submit'/>Done!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
