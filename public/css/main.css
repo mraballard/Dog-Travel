@@ -4,6 +4,9 @@ body {
   /*text-transform: lowercase;*/
   letter-spacing: 1px;
 }
+.yellow {
+  background: yellow;
+}
 li {
   margin-top: 5px;
   letter-spacing: 1px;
@@ -50,6 +53,11 @@ img {
   /*color: #D2FFCF;*/
   /*border: 0.5px solid #D2FFCF;*/
   box-shadow: 2px 2px 2px 2px #3B473A;
+}
+.post {
+  background: #546653;
+  color: #50CC8E;
+  border: 0px;
 }
 .darker {
   background: #546653;

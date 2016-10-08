@@ -6,35 +6,37 @@
       <span id="dateStamp">{{review.updatedAt}}</span>
 
       <div class="row">
-        <div class="col-md-8 col-md-offset-2 darker">
+        <div class="col-md-11 col-xs-offset-1 post">
           <h3>{{review.location.place}}</h3>
 
           <h4>{{review.location.city}}, {{review.location.state}}, {{review.location.country}}</h4>
-          <hr>
           <div class="row">
-
-              <div class="col-md-6 col-md-offset-1">
+              <div class="col-md-10 col-xs-offset-2">
                 <h5>The good:</h5>
                 <p>{{review.theGood}}</p>
+                <hr>
               </div>
-
-
-              <div class="col-md-6 col-md-offset-1">
+              <div class="col-md-10 col-xs-offset-2">
                 <h5>The bad:</h5>
                 <p>{{review.theBad}}</p>
               </div>
-
           </div>
-        </div>
+          <div class="col-md-12 bottom-padding">
+            {{#if review.comments}}
+              <h5>Comments:</h5>
+            {{/if}}
+            <ul class="list-group">
+              {{#each review.comments}}
+                <li class="list-group-item dark"><span>{{updatedAt}}</span><br>{{body}}   <a href="/user/{{user._id}}">@{{user.username}}</a></li>
+              {{/ each}}
+            </ul>
+          </div>
+      </div>
+
+
       </div>
       <div class="row">
-        <div class="col-md-8 col-md-offset-2 darker">
-          <ul class="list-group">
-            {{#each review.comments}}
-              <li class="list-group-item dark"><span>{{updatedAt}}</span><br>{{body}}   <a href="/user/{{user._id}}">@{{user.username}}</a></li>
-            {{/ each}}
-          </ul>
-        </div>
+
       </div>
       {{#if isUser}}
         <div class="row">
