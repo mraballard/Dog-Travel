@@ -1,12 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 col-md-offset-1 darker text-center">
-      <h2>{{title}}</h2>
-      <hr>
-      <h4>{{message}}</h4>
-      <h4>Sign in, <a href="/signup">Sign up</a>, or <a href="/reviews">continue</a> as guest</h4>
+    <div class="col-sm-8 col-sm-offset-2 darker top-buffer">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2 text-left">
+        <div class="text-center top-padding">
+          <h4>{{message}}</h4>
+          <h4>Sign in, <a href="/signup">Sign up</a>, or <a href="/reviews">continue</a> as guest</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 text-left">
           <form class="" action="/login" method="POST">
             <div class="form-group">
               <label for="username">Username</label>
@@ -16,7 +18,7 @@
               <label for="password">Password</label>
               <input class="form-control" type="password" name="password" placeholder="password">
             </div>
-            <button class="btn btn-success" type="submit" name="submit">Log In</button>
+            <button class="btn btn-success bottom-buffer" type="submit" name="submit">Log In</button>
           </form>
         </div>
       </div>
