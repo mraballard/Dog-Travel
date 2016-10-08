@@ -23,7 +23,7 @@ router.get('/login', function(req,res){
   else {
     res.render('login', {
       message: req.flash('info'),
-      title: "Travel with man's best friend"});
+      appTitle: "Dogventures"});
   }
 });
 router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), function(req, res){
@@ -48,7 +48,9 @@ router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), fun
 
 // CREATE USER FROM SIGNUP //
 router.get('/signup', function(req, res){
-  res.render('signup');
+  res.render('signup', {
+    title: "Dogventures"
+  });
 })
 router.post('/signup', function(req,res){
   User.register(
