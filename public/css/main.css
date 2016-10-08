@@ -1,7 +1,7 @@
 body {
   background: #414F40;
   color: #D2FFCF;
-  text-transform: lowercase;
+  /*text-transform: lowercase;*/
   letter-spacing: 1px;
 }
 li {
@@ -54,30 +54,15 @@ img {
 .darker {
   background: #546653;
   color: #50CC8E;
+  border: 0px;
+}
+.darker:hover {
+  background: #546653;
+  color: #50CC8E;
   /*border: 0.5px solid #D2FFCF;*/
   /*border-radius: 5px;*/
-  box-shadow: 6px 6px 5px #3B473A;
+  box-shadow: 2px 2px 2px #3B473A;
 }
 .darkest {
   background: #414F40;
 }
-/*h1 {
-  margin-left: 200px;
-}*/
-/*nav {
-  margin-left: 200px;
-}
-input {
-  display: block;
-  margin: 40px;
-}
-textarea {
-  display: block;
-  margin: 40px;
-}
-#newForm {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-around;
-}*/

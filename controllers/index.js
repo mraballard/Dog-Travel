@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
 });
 // ABOUT US
 router.get('/about', function(req, res) {
-  res.redirect('/login');
+  res.render('about');
 });
 // POST LOGIN ROUTE USING PROMISES //
 router.get('/login', function(req,res){

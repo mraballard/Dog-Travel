@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-8">
-      <h3>Please fill out your info</h3>
       <h4>{{message}}</h4>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-10 col-sm-offset-1 darker">
       <h4><a href='/login'> < Back </a></h4>
+  </div>
+  <div class="row text-center">
+    <div class="col-sm-10 col-sm-offset-1">
+      <div class="row bottom-buffer">
+        <h3>Please fill out your info</h3>
+      </div>
       <div class="row">
-        <div class="col-sm-8 col-sm-offset-2 light">
+        <div class="col-sm-6 col-sm-offset-3 darker text-left">
           <form class="form" action="/signup" method="POST">
-            <div class="form-group">
+            <div class="form-group top-buffer">
               <label for="username">Username</label>
               <input name="username" class="form-control" placeholder="username">
             </div>
@@ -35,7 +35,7 @@
               <label for="dogName">Your Dog's name</label>
               <textarea name="dogName" class="form-control" name='dogName' placeholder="Dog's name"></textarea>
             </div>
-            <div class="btn-group">
+            <div class="btn-group bottom-buffer">
               <button class="btn btn-lg btn-primary" type='submit' value='submit'/>Done!</button>
             </div>
           </form>

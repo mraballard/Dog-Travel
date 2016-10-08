@@ -42,27 +42,27 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/reviews"><img id="logo" src="/images/paw.jpg" alt="Logo" /></a>
-      <a class="navbar-brand" href="/reviews">dogventures</a>
+      <a class="navbar-brand" href="/login"><img id="logo" src="/images/paw.jpg" alt="Logo"/></a>
+      <a class="navbar-brand" href="/about">dogventures</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="/reviews">Browse Posts <span class="sr-only">(current)</span></a></li>
-        <li><a href="/login">Log In</a></li>
+        <li class="active"><a href="/reviews">browse Posts <span class="sr-only">(current)</span></a></li>
+        <li><a href="/login">log in</a></li>
 <!-- Dropdown -->
 {{#if user}}
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.firstName}} <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/user/{{user._id}}/profile">Profile</a></li>
-            <li><a href="/user/{{user._id}}">My Reviews</a></li>
-            <li><a href="/user/{{user._id}}/new">New Review</a></li>
+            <li><a href="/user/{{user._id}}">my posts</a></li>
+            <li><a href="/user/{{user._id}}/new">new post</a></li>
             <li><a href="#">{{user.dog}}</a></li>
             <li role="separator" class="divider"></li>
             <li><form id="logout" action="/logout?_method=DELETE" method="POST">
-              <button class="btn btn-danger" type="submit" name="submit">Logout</button>
+              <button class="btn btn-danger" type="submit" name="submit">logout</button>
             </form></li>
           </ul>
         </li>
