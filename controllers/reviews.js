@@ -41,6 +41,7 @@ router.get('/:postId', function(req, res) {
         var sameUser = false;
       }
     }
+    console.log(review.comments);
     res.render('reviews/show',{
       review: review,
       user: req.user,

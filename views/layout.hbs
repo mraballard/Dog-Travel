@@ -49,8 +49,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="/reviews">browse Posts <span class="sr-only">(current)</span></a></li>
-        <li><a href="/login">log in</a></li>
+        <li class="active"><a href="/reviews">browse posts <span class="sr-only">(current)</span></a></li>
+        {{#unless user}}
+          <li><a href="/login">log in</a></li>
+        {{/unless}}
 <!-- Dropdown -->
 {{#if user}}
         <li class="dropdown">

@@ -1,14 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-8">
-      <h3>Write your review</h3>
-    </div>
+      <h4><a href='../{{user._id}}'> < Back </a></h4>
   </div>
   <div class="row">
-    <div class="col-sm-10 col-sm-offset-1 darker">
-      <h4><a href='../{{user._id}}'> < Back </a></h4>
+    <div class="col-sm-10 col-sm-offset-1 light">
+      <h3>Write your review</h3>
       <div class="row">
-        <div class="col-sm-8 col-sm-offset-2 light">
+        <div class="col-sm-10 col-sm-offset-2 darker-box">
           <form class="form" action="/user/{{user._id}}/new" method="POST">
             <div class="form-group">
               <label for="title">Review Title</label>
@@ -38,7 +36,7 @@
               <label for="theBad">The Bad</label>
               <textarea name="theBad" class="form-control" name='theBad' placeholder="The bad stuff"></textarea>
             </div>
-            <div class="btn-group">
+            <div class="btn-group bottom-buffer">
               <button class="btn btn-lg btn-primary" type='submit' value='submit'/>Done!</button>
             </div>
           </form>

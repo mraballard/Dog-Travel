@@ -1,8 +1,11 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-10 col-md-offset-1 light">
-      <h2>{{review.title}}: <a href="/user/{{owner._id}}">@{{owner.username}}</a></h2><br>
+    {{#if isUser}}
+          <h4><a href="/user/{{user._id}}/{{review._id}}/edit"> Edit this Review</a></h4>
+    {{/if}}
+    <div class="col-lg-12 light">
+      <h2>{{review.title}}: <a href="/user/{{owner._id}}">@{{owner.username}}</a></h2>
       <span id="dateStamp">{{review.updatedAt}}</span>
 
       <div class="row">
@@ -27,39 +30,27 @@
             {{/if}}
             <ul class="list-group">
               {{#each review.comments}}
-                <li class="list-group-item dark"><span>{{updatedAt}}</span><br>{{body}}   <a href="/user/{{user._id}}">@{{user.username}}</a></li>
+                <li class="list-group-item light"><span>{{updatedAt}}</span><br>{{body}}   <a href="/user/{{user._id}}">@{{user.username}}</a></li>
               {{/ each}}
             </ul>
-          </div>
-      </div>
-
-
-      </div>
-      <div class="row">
-
-      </div>
-      {{#if isUser}}
-        <div class="row">
-          <div class="col-md-6">
-            <h4><a href="/user/{{user._id}}/{{review._id}}/edit"> Edit this Review</a></h4>
+            {{#if user}}
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3 post">
+                  <form class="form" action="/reviews/{{review.id}}?_method=PATCH" method="POST">
+                      <div class="form-group">
+                        <label for="comment"></label>
+                        <textarea name="comment" class="form-control" placeholder="Add comment"></textarea>
+                      </div>
+                      <div class="btn-group">
+                        <button class="btn btn-md btn-default" type='submit' value='submit'/>Add comment</button>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            {{/if}}
           </div>
         </div>
-      {{/if}}
-      {{#if user}}
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3 darker">
-            <form class="form" action="/reviews/{{review.id}}?_method=PATCH" method="POST">
-                <div class="form-group">
-                  <label for="comment">Comment:</label>
-                  <textarea name="comment" class="form-control" placeholder="Add comment"></textarea>
-                </div>
-                <div class="btn-group">
-                  <button class="btn btn-md btn-default" type='submit' value='submit'/>Add comment</button>
-                </div>
-            </form>
-          </div>
-        </div>
-      {{/if}}
+      </div>
     </div>
   </div>
 </div>

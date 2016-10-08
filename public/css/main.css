@@ -71,6 +71,13 @@ img {
   /*border-radius: 5px;*/
   box-shadow: 2px 2px 2px #3B473A;
 }
+.darker-box {
+  background: #546653;
+  color: #50CC8E;
+  border: 0px;
+  box-shadow: 2px 2px 2px #3B473A;
+
+}
 .darkest {
   background: #414F40;
 }

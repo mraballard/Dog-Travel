@@ -20,13 +20,21 @@ router.get('/:userId', function(req, res){
   Review.find({user: req.params.userId}).populate('user').exec()
   .catch(function(error){
     req.flash('info', error);
+    res.redirect('/reviews');
   })
   .then(function(reviews){
-    var viewData = {
-      reviews: reviews,
-      user: req.user,
-      owner: reviews[0].user
-    };
+    if (reviews.length === 0) {
+      req.flash('info', 'That user has no reviews yet!');
+      res.redirect('/reviews');
+      console.log('No reviews '+reviews);
+    }
+    else {
+      var viewData = {
+        reviews: reviews,
+        user: req.user,
+        owner: reviews[0].user
+      };
+    }
     var searchString = req.query.search;
     if (searchString) {
       viewData.reviews = reviews.filter(function(review){
