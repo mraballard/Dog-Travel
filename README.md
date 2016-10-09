@@ -7,6 +7,7 @@ their profile information (username, first name, last name, email, dog's name) a
 password.
 
 Future improvements:
+  - Organize posts from newest to oldest
   - Incorporate password reset functionality without having to log in.
   - Incorporate google places / maps for location model when creating a new post.
   
