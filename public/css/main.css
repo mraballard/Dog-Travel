@@ -10,6 +10,9 @@ body {
 .yellow {
   background: yellow;
 }
+.timestamp {
+  color: #B0FFD8;
+}
 li {
   margin-top: 5px;
   letter-spacing: 1px;
@@ -41,7 +44,8 @@ img {
 }
 .light {
   background: #677D65;
-  color: #B0FFD8;
+  color: #76F1FF;
+
   border: 0px;
   box-shadow: 2px 2px 2px 2px #3B473A;
 }

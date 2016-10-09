@@ -30,7 +30,7 @@
             {{/if}}
             <ul class="list-group">
               {{#each review.comments}}
-                <li class="list-group-item light"><span>{{updatedAt}}</span><br>{{body}}   <a href="/user/{{user._id}}">@{{user.username}}</a></li>
+                <li class="list-group-item light"><span class="timestamp">{{updatedAt}}</span><br>{{body}}   <a href="/user/{{user._id}}">@{{user.username}}</a></li>
               {{/ each}}
             </ul>
             {{#if user}}
