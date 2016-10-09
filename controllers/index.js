@@ -69,7 +69,7 @@ router.post('/signup', function(req,res){
       }
       else {
         req.flash('info', 'Welcome! Please login!');
-        res.redirect('/login');
+        res.redirect('/reviews');
       }
     }
   );
