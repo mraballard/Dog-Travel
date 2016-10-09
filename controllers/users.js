@@ -32,7 +32,8 @@ router.get('/:userId', function(req, res){
       var viewData = {
         reviews: reviews,
         user: req.user,
-        owner: reviews[0].user
+        owner: reviews[0].user,
+        message: req.flash('info')
       };
     }
     var searchString = req.query.search;

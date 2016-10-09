@@ -35,7 +35,8 @@ router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), fun
     else {
       User.findOne({username: req.user.username}).exec()
       .then(function(user){
-        req.flash('info', 'Welcome!')
+        console.log(user);
+        req.flash('info', `Welcome ${user.firstName}!`)
         res.redirect('/reviews');
       })
       .catch(function(err){
