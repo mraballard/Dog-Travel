@@ -1,4 +1,4 @@
-# Dog-Travel
+# Dogventures
 An app where users can share dog friendly travel locations
 
 App currently allows users to explore posts without creating an account. Users can create an account
