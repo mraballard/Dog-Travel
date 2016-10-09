@@ -58,7 +58,7 @@ router.post('/signup', function(req,res){
       username: req.body.username,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      reviews: [],
+      email: req.body.email,
       dog: req.body.dogName
     }),
     req.body.password,

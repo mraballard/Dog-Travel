@@ -9,7 +9,7 @@ var Location = require('../models/location');
 // authenticate user function
 var authenticate = function(req, res, next) {
   if (!req.user || req.user._id.toString() !== req.params.userId.toString()) {
-    req.fash('info', "Unable to verify user.");
+    req.flash('info', "Unable to verify user.");
     res.redirect('/login');
   } else {
     next();
@@ -138,7 +138,7 @@ router.get('/:userId/profile', authenticate, function(req, res){
 });
 router.patch('/:userId/profile', function(req, res) {
     req.user.username = req.body.username;
-    req.user.password = req.body.password;
+    req.user.email = req.body.email;
     req.user.firstName = req.body.firstName;
     req.user.lastName = req.body.lastName;
     req.user.dog = req.body.dogName;
