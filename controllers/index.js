@@ -78,7 +78,7 @@ router.post('/signup', function(req,res){
 // Signout USER //
 router.delete('/logout', function(req, res) {
   req.logout();
-  req.flash('info', 'Successfully signed out!')
+  req.flash('info', ' Successfully signed out! ')
   res.redirect('/');
 });
 

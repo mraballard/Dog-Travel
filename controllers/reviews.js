@@ -46,7 +46,8 @@ router.get('/:postId', function(req, res) {
       review: review,
       user: req.user,
       owner: review.user,
-      isUser: sameUser
+      isUser: sameUser,
+      message: req.flash('info')
     });
   });
 });

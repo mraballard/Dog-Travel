@@ -137,13 +137,57 @@ router.get('/:userId/profile', authenticate, function(req, res){
   res.render('profile/show', {user: req.user});
 });
 router.patch('/:userId/profile', function(req, res) {
-    req.user.username = req.body.username;
-    req.user.email = req.body.email;
-    req.user.firstName = req.body.firstName;
-    req.user.lastName = req.body.lastName;
-    req.user.dog = req.body.dogName;
-    req.user.save();
+  User.findOne({_id: req.params.userId}).exec()
+  .catch(function(error){
+    console.error(error);
+    req.flash('info', error);
+    res.redirect('login');
+  })
+  .then(function(user){
+    user.username = req.body.username;
+    user.email = req.body.email;
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
+    user.dog = req.body.dogName;
+    user.save();
+    req.flash('info', ' Changes successfully saved ')
     res.redirect(`/user/${req.user._id}`);
+  });
+    // req.user.username = req.body.username;
+    // req.user.email = req.body.email;
+    // req.user.firstName = req.body.firstName;
+    // req.user.lastName = req.body.lastName;
+    // req.user.dog = req.body.dogName;
+    // req.user.save();
+    // res.redirect(`/user/${req.user._id}`);
+});
+
+router.get('/:userId/profile/password', authenticate, function(req,res){
+  res.render('profile/password', {user: req.user, message: req.flash('info')});
+});
+
+router.patch('/:userId/profile/password', function(req, res){
+  User.findOne({_id: req.params.userId}).exec()
+  .catch(function(error){
+    console.error(error);
+    req.flash('info', error);
+    res.redirect('login');
+  })
+  .then(function(user){
+    if (req.body.password) {
+      if (req.body.password === req.body.passwordConfirm) {
+        user.setPassword(req.body.password, function(){
+          console.log('Password reset');
+          user.save();
+          req.flash('info', ' Password successfully changed ')
+          res.redirect(`/user/${user._id}/`);
+        });
+      } else {
+        console.log('Passwords do not match');
+        res.redirect(`/user/${user._id}/profile/password`);
+      }
+    }
+  });
 });
 
 module.exports = router;
