@@ -18,3 +18,5 @@ Technology used:
   . handlebars
   . flash
   
+original wireframes:  https://ninjamock.com/Designer/Workplace/3744335/Welcome
+deployed app:         https://dog-travel.herokuapp.com/login
