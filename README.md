@@ -11,12 +11,13 @@ Future improvements:
   - Incorporate google places / maps for location model when creating a new post.
   
 Technology used:
-  - Express
-  - Mongoose
-  - MongoDB
+  - Express (server)
+  - Mongoose (application data)
+  - MongoDB (database)
   - Passport (for user authentication)
-  . handlebars
-  . flash
+  . handlebars (dynamic html)
+  . flash (messages to html views) 
+  - Bootstrap (css styling)
   
 original wireframes:  https://ninjamock.com/Designer/Workplace/3744335/Welcome
 
