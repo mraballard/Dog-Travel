@@ -25,6 +25,9 @@ a:hover {
   color: #D2FFCF;
   text-decoration: none;
 }
+.neg-top-buffer {
+  margin-top: -12px;
+}
 .top-buffer {
   margin-top:10px;
 }
