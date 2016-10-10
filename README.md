@@ -11,6 +11,7 @@ Future improvements:
   - Add search functionality for all parts of post, not just city.
   - Incorporate password reset functionality without having to log in.
   - Incorporate google places / maps for location model when creating a new post.
+  - Incorporate signup / login authetication with google, facebook, to skip profile and account creation.
   
 Technology used:
   - Express (server)
