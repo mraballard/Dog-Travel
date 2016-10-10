@@ -6,6 +6,7 @@ Users can create an accountin order to create their own posts or comment on othe
 their profile information (username, first name, last name, email, dog's name) and change their current password.
 
 Future improvements:
+  - Add dog model, view page to see user's dog details.
   - Organize posts from newest to oldest
   - Add search functionality for all parts of post, not just city.
   - Incorporate password reset functionality without having to log in.
