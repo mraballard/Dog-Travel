@@ -50,7 +50,8 @@ router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), fun
 // CREATE USER FROM SIGNUP //
 router.get('/signup', function(req, res){
   res.render('signup', {
-    title: "Dogventures"
+    title: "Dogventures",
+    message: req.flash('info')
   });
 })
 router.post('/signup', function(req,res){
@@ -70,7 +71,7 @@ router.post('/signup', function(req,res){
         res.redirect('/signup');
       }
       else {
-        req.flash('info', 'Welcome! Please login!');
+        req.flash('info', `Welcome! ${req.user.username}`);
         res.redirect('/reviews');
       }
     }
