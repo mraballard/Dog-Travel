@@ -23,18 +23,18 @@ router.get('/:userId', function(req, res){
     res.redirect('/reviews');
   })
   .then(function(reviews){
-    if (reviews.length === 0) {
-      req.flash('info', 'That user has no reviews yet!');
-      res.redirect('/reviews');
-      console.log('No reviews '+reviews);
-    }
-    else {
+    if (reviews.length > 0) {
       var viewData = {
         reviews: reviews,
         user: req.user,
         owner: reviews[0].user,
         message: req.flash('info')
       };
+    }
+    else {
+      req.flash('info', 'That user has no reviews yet!');
+      res.redirect('/reviews');
+      console.log('No reviews '+reviews);
     }
     var searchString = req.query.search;
     if (searchString) {
