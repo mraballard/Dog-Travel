@@ -4,6 +4,11 @@ body {
   /*text-transform: lowercase;*/
   letter-spacing: 1px;
 }
+.logo-text {
+  /*text-shadow: 1px 1px 3px #414F40;*/
+  font-size: 1.5em;
+  letter-spacing: 3px;
+}
 .message {
   color: #FF7E35;
 }
