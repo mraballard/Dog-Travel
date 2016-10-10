@@ -7,7 +7,7 @@ var Review = require('../models/review');
 
 // INDEX ROUTE
 router.get('/', function(req, res) {
-  Review.find({}).exec()
+  Review.find({}).populate('user').exec()
   .then(function(reviews){
     var viewData = {reviews: reviews, user: req.user, message: req.flash('info')};
     var searchString = req.query.search;

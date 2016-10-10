@@ -31,7 +31,7 @@
       {{/if}}
         <ul class="list-group">
           {{#each reviews}}
-              <li class="list-group-item darker"><a href="/reviews/{{_id}}">{{title}}:</a> {{location.city}}, {{location.state}}, {{location.country}}</li>
+              <li class="list-group-item darker"><a href="/reviews/{{_id}}">{{title}}:</a> {{location.city}}, {{location.state}}, {{location.country}}     <a href="/user/{{user._id}}">@{{user.username}}</a></li>
           {{/each}}
         </ul>
     </div>
