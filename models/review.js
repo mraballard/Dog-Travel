@@ -13,17 +13,17 @@ var ReviewSchema = new mongoose.Schema({
   location: LocationSchema,
   theGood: String,
   theBad: String,
-  createdAt: Date,
-  updatedAt: Date,
+  createdAt: String,
+  updatedAt: String,
   likes: Number,
   comments: [CommentSchema]
 });
 
 ReviewSchema.pre('save', function(next){
   now = new Date();
-  this.updatedAt = now;
+  this.updatedAt = now.toLocaleString();
   if (!this.createdAt) {
-    this.createdAt = now;
+    this.createdAt = now.toLocaleString();
   }
   next();
 });

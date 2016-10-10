@@ -1,5 +1,8 @@
 body {
   background: #414F40;
+  /*background-image: url('/images/dog_canoe.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;*/
   color: #D2FFCF;
   /*text-transform: lowercase;*/
   letter-spacing: 1px;
@@ -32,6 +35,9 @@ a:hover {
 }
 .neg-top-buffer {
   margin-top: -12px;
+}
+.float-right {
+  float: right;
 }
 .top-buffer {
   margin-top:10px;

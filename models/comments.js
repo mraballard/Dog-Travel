@@ -7,16 +7,16 @@ var CommentSchema = new mongoose.Schema({
     type: ObjectId,
     ref: 'User'
   },
-  createdAt: Date,
-  updatedAt: Date,
+  createdAt: String,
+  updatedAt: String,
   body: String
 });
 
 CommentSchema.pre('save', function(next){
   now = new Date();
-  this.updatedAt = now;
+  this.updatedAt = now.toLocaleString();
   if (!this.createdAt) {
-    this.createdAt = now;
+    this.createdAt = now.toLocaleString();
   }
   next();
 });
