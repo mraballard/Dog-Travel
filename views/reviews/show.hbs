@@ -1,19 +1,17 @@
 
 <div class="container">
   <div class="row">
-    {{#if isUser}}
+    {{#if isUser}}  <!-- If user is logged in, allow EDIT -->
           <h4><a href="/user/{{user._id}}/{{review._id}}/edit"> Edit this Review</a></h4>
     {{/if}}
     <div class="col-lg-12 light">
       <h2>{{review.title}}: <a href="/user/{{owner._id}}">@{{owner.username}}</a></h2>
       <span id="dateStamp">{{review.updatedAt}}</span>
-
       <div class="row">
         <div class="col-md-11 col-xs-offset-1 post">
           <h3>{{review.location.place}}</h3>
-
           <h4>{{review.location.city}}, {{review.location.state}}, {{review.location.country}}</h4>
-          <div class="row">
+          <div class="row">  <!-- The good / bad --->
               <div class="col-md-10 col-xs-offset-2">
                 <h5>The good:</h5>
                 <p>{{review.theGood}}</p>
@@ -24,7 +22,7 @@
                 <p>{{review.theBad}}</p>
               </div>
           </div>
-          <div class="col-md-12 bottom-padding">
+          <div class="col-md-12 bottom-padding"> <!-- post details and comments -->
             {{#if review.comments}}
               <h5>Comments:</h5>
             {{/if}}
@@ -34,9 +32,9 @@
               {{/ each}}
             </ul>
             {{#if user}}
-              <div class="row">
-                <div class="col-md-6 col-md-offset-3 post">
-                  <form class="form" action="/reviews/{{review.id}}?_method=PATCH" method="POST">
+                <div class="row">  <!-- form for adding comment -->
+                  <div class="col-md-6 col-md-offset-3 post">
+                    <form class="form" action="/reviews/{{review.id}}?_method=PATCH" method="POST">
                       <div class="form-group">
                         <label for="comment"></label>
                         <textarea name="comment" class="form-control" placeholder="Add comment"></textarea>
