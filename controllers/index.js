@@ -65,6 +65,7 @@ router.post('/signup', function(req,res){
     req.body.password,
     function(err, user) {
       if (err) {
+        console.log(err);
         req.flash('info', err.message);
         res.redirect('/signup');
       }

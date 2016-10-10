@@ -69,30 +69,6 @@ router.post('/:userId/new', function(req, res){
     res.redirect(`/user/${req.user._id}`);
   });
 });
-// Users EDIT Review Route
-// router.get('/reviews/:postId', authenticate, function(req, res){
-//   // var review = findReview(req.user.reviews, req.params.postId);
-//   Review.findOne({_id: req.params.postId}).populate('user')
-//   .then(function(review){
-//     // console.log('posts author: '+review.user._id);
-//     // console.log('user logged in' + req.user._id);
-//     var postId = review.user._id.toString();
-//     var userId = req.user._id.toString();
-//     if (postId === userId) {
-//       console.log(postId, userId);
-//       var sameUser = true;
-//     }
-//     else {
-//       var sameUser = false;
-//       console.log(postId, userId);
-//     }
-//     res.render('reviews/show', {
-//       user: req.user,
-//       review: review,
-//       isUser: sameUser
-//     });
-//   });
-// });
 // EDIT POST GET ROUTE
 router.get('/:userId/:postId/edit', authenticate, function(req, res){
   Review.findOne({_id: req.params.postId}).exec()
@@ -162,11 +138,11 @@ router.patch('/:userId/profile', function(req, res) {
     // req.user.save();
     // res.redirect(`/user/${req.user._id}`);
 });
-
+// PASSWORD GET ROUTE
 router.get('/:userId/profile/password', authenticate, function(req,res){
   res.render('profile/password', {user: req.user, message: req.flash('info')});
 });
-
+// PASSWORD PATCH ROUTE
 router.patch('/:userId/profile/password', function(req, res){
   User.findOne({_id: req.params.userId}).exec()
   .catch(function(error){
