@@ -118,7 +118,7 @@ router.patch('/:userId/profile', function(req, res) {
   .catch(function(error){
     console.error(error);
     req.flash('info', error);
-    res.redirect('login');
+    res.redirect('/login');
   })
   .then(function(user){
     user.username = req.body.username;
@@ -157,10 +157,11 @@ router.patch('/:userId/profile/password', function(req, res){
           console.log('Password reset');
           user.save();
           req.flash('info', ' Password successfully changed ')
-          res.redirect(`/user/${user._id}/`);
+          res.redirect(`/user/${user._id}`);
         });
       } else {
         console.log('Passwords do not match');
+        req.flash('info', ' Passwords do not match!')
         res.redirect(`/user/${user._id}/profile/password`);
       }
     }

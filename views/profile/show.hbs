@@ -4,17 +4,17 @@
     <div class="col-xs-10 darker">
       <h2>{{user.firstName}}'s Profile Page</h2>
       <h4>Edit your info :</h4>
-      <h5>or <a href="/user/{{user._id}}/profile/password">change your password</h5>
+      <h5>or <a href="/user/{{user._id}}/profile/password">change your password</a></h5>
       <hr>
       <div class="col-xs-8 col-xs-offset-2 light">
         <form action="/user/{{user._id}}/profile?_method=PATCH" method="POST">
           <div class="form-group">
-            <label for="signup">Username</label><br>
+            <label for="username">Username</label><br>
             <input class="form-control" type="text" name="username" value="{{user.username}}">
           </div>
           <div class="form-group">
             <label for="email">email</label><br>
-            <input class="form-control" type="text" name="email" value="{{user.email}}">
+            <input class="form-control" type="email" name="email" value="{{user.email}}">
           </div>
           <div class="form-group">
             <label for="fist-name">First name</label><br>
