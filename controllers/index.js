@@ -65,13 +65,12 @@ router.post('/signup', function(req,res){
     req.body.password,
     function(err, user) {
       if (err) {
-        return res.render('/signup', {
-          message: req.flash('info', err.message)
-        });
-      }
+        req.flash('info', err.message);
+        res.redirect('/signup');
+        }
       else {
-        req.flash('info', `Welcome! ${req.body.username}`);
-        res.redirect('/login');
+        req.flash('info', `Welcome! ${user.username}`);
+        res.redirect('/reviews');
       }
     }
   );
