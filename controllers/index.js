@@ -50,7 +50,6 @@ router.post('/login', passport.authenticate('local',{failureRedirect: '/'}), fun
 // CREATE USER FROM SIGNUP //
 router.get('/signup', function(req, res){
   res.render('signup', {
-    title: "Dogventures",
     message: req.flash('info')
   });
 })
@@ -66,13 +65,13 @@ router.post('/signup', function(req,res){
     req.body.password,
     function(err, user) {
       if (err) {
-        console.log(err);
-        req.flash('info', err.message);
-        res.redirect('/signup');
+        return res.render('/signup', {
+          message: req.flash('info', err.message)
+        });
       }
       else {
-        req.flash('info', `Welcome! ${req.user.username}`);
-        res.redirect('/reviews');
+        req.flash('info', `Welcome! ${req.body.username}`);
+        res.redirect('/login');
       }
     }
   );
