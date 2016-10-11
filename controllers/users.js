@@ -32,7 +32,7 @@ router.get('/:userId', function(req, res){
       };
     }
     else {
-      req.flash('info', 'That user has no reviews yet!');
+      req.flash('info', 'User has no reviews yet!');
       res.redirect('/reviews');
       console.log('No reviews '+reviews);
     }
@@ -105,6 +105,11 @@ router.patch('/reviews/:postId/edit', function(req, res){
 // DELETE POST ROUTE
 router.delete('/reviews/:postId', function(req,res){
   Review.remove({_id: req.params.postId}).exec()
+  .catch(function(error){
+    console.log(error);
+    req.flash('info', error);
+    res.redirect('/reviews');
+  })
   .then(function(){
     res.redirect(`/user/${req.user._id}`);
   });
