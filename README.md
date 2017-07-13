@@ -14,13 +14,13 @@ Future improvements:
   - Incorporate signup / login authetication with google, facebook, to skip profile and account creation.
   
 Technology used:
-  - Express (server)
-  - Mongoose (application data)
-  - MongoDB (database)
-  - Passport (for user authentication)
-  . handlebars (dynamic html)
-  . flash (messages to html views) 
-  - Bootstrap (css styling)
+  - Express 
+  - Mongoose 
+  - MongoDB 
+  - Passport
+  - handlebars
+  - flash (messages to html views) 
+  - Bootstrap
   
 original wireframes:  https://ninjamock.com/Designer/Workplace/3744335/Welcome
 
